@@ -1,0 +1,62 @@
+<% if(!pageName){var pageName = 'welcome'} %> 
+<nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+  <div class="container-fluid w-100">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbarNavs" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon "></span>
+    </button>
+    
+        <div class="collapse navbar-collapse navbarNavs" id="navbarNavsL">
+          <div class="navbar-nav mr-auto navbarMain" id="navDivL">
+            <a   <% if(pageName == 'welcome'){%> class ="nav-link active" <%} else { %>class ="nav-link" <%}%>    href="/investments">Welcome</a>
+            <a  <% if(pageName == 'home'){%> class ="nav-link active" <%} else { %>class ="nav-link" <%}%> href="/investments/home">Home</a>
+            <a <% if(pageName == 'new'){%> class ="nav-link active" <%} else { %> class ="nav-link" <%}%> href="/investments/new">New</a>
+          </div>
+        </div>
+    
+      
+        <div class="mx-auto p-0"> 
+          <% if(pageName === 'home') {%> 
+            <a class="navbar-brand" href="/" >Custom Tickers </a>
+            <% } else if(pageName === 'new') { %> 
+              <a class="navbar-brand" href="/" > New Investment </a>
+            <% } else { %> 
+              <a class="navbar-brand" href="/" > Cryptocurrency Tickers</a>
+              <% } %> 
+        </div>
+          
+            <div class="collapse navbar-collapse navbarNavs pb-0 mb-0" id="navbarNavsR">
+              <div class="navbar-nav ml-auto" id="navDivR">
+                <div class="btn-group-toggle btn-sm pl-0" data-toggle="buttons">
+                  <label id="autoUpdate" class="btn bg-warning searching pt-1 mx-2 <%if(!updateTics){%> hidden <%}%>">
+                    <input type="checkbox" autocomplete="off" >
+                  </label>
+              </div>
+                <% if(!currentUser){%> 
+                  <a class="nav-link" href="/login">Login</a>
+                  <a class="nav-link" href="/register">Register</a>
+                  <% } else { %> 
+                    <a class="nav-link" href="/investments"><%= currentUser.username %> </a>
+                    <a class="nav-link" href="/logout">Logout</a>
+                    <% } %> 
+              </div>
+            </div>
+
+
+
+</div>
+            
+          
+</nav>
+      
+<%  
+function classActive(linkName){
+  if(pageName == linkName){
+    console.log(`${linkName} active`);
+    return "nav-link active"          
+  } else{
+    console.log(`${linkName} not active`);
+    return "nav-link"
+  }
+}
+%>
+      
