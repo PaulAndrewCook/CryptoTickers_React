@@ -2,6 +2,7 @@ import User from '../../models/user.js'; //user model
 import Ticker from '../../models/stocks.js'; //Ticker Model
 import Markets from '../../models/markets.js'; //markets Model
 import ccxt from 'ccxt'; //crypto api - create all tic data
+import { port } from '../../app.js';
 import { DateTime } from 'luxon'; //convert date and time of tic into usable info
 import NODE_ICU_DATA from 'full-icu'; //for luxon - datetime-> to get local timezone
 
@@ -12,7 +13,7 @@ export const makeTics = async (userId, baseTics) => {
 	var tics = [];
 	var ticker = {};
 
-	for await (tic of tickers) {
+	for await (let tic of tickers) {
 		ticker = new Ticker(tic);
 		ticker.creator = userId;
 		await ticker.save();
@@ -31,7 +32,7 @@ export const makeTics = async (userId, baseTics) => {
 async function defaultTics() {
 	const tics = [
 		{ exchange: 'binance', symbol: 'BTC/USDT', crypto: true },
-		{ exchange: 'bytetrade', symbol: 'ETH/USDT', crypto: true },
+		{ exchange: 'kraken', symbol: 'ETH/USDT', crypto: true },
 		{ exchange: 'kraken', symbol: 'ADA/USDT', crypto: true },
 		{ exchange: 'binance', symbol: 'CELO/USDT', crypto: true }
 	];
@@ -46,7 +47,7 @@ async function defaultTics() {
 export const indexTics = async () => {
 	return new Promise(async (resolve, reject) => {
 		//Mongo Atlas tickers
-		index = [
+		const productionIndex = [
 			'6083508e58dc46845fd96f16',
 			'608350f758dc46845fd96f17',
 			'6083513058dc46845fd96f18',
@@ -54,16 +55,17 @@ export const indexTics = async () => {
 			'608351a858dc46845fd96f1b'
 		];
 		//localhost tickers
-		// index = [
-		// 	'607a0941ca201219560f36d3',
-		// 	'607a09bbca201219560f36d6',
-		// 	'607a0993ca201219560f36d5',
-		// 	'607a09d0ca201219560f36d7',
-		// 	'607a0f5ecf0ac71a285f6c44'
-		// ];
+		const localIndex = [
+			'607a0941ca201219560f36d3',
+			// '607a09bbca201219560f36d6',
+			'607a0993ca201219560f36d5',
+			'607a09d0ca201219560f36d7',
+			'607a0f5ecf0ac71a285f6c44'
+		];
+		const index = port === 8000 ? localIndex : productionIndex;
 		var tickers = [];
-		for await (tic of index) {
-			var tics = await Ticker.findByIdAndUpdate({ _id: tic });
+		for await (let item of index) {
+			var tics = await Ticker.findByIdAndUpdate({ _id: item });
 			tickers.push(tics);
 		}
 		resolve(tickers);
@@ -90,9 +92,6 @@ export const updateTickers = async (ticker) => {
 				})
 			: new ccxt[exc]();
 	});
-
-	//Temp call to get history
-	fetchHis(exchange[2], ticker[1].symbol);
 
 	// fetch('https://worldtimeapi.org/api/ip')
 	// 	.then((response) => response.json())
@@ -128,16 +127,16 @@ export const updateTickers = async (ticker) => {
 			return tickers;
 		});
 
-	if (!Array.isArray(tickers)) {
-		tickers = [
-			tickers
-		];
-	}
-	//trying to catch errors if tics are not made - does not work though
-	if (ticker.length != tickers.length) {
-		const { redtics, deletedTics } = checkTics(tickers);
-		tickers = redtics;
-	}
+	// if (!Array.isArray(tickers)) {
+	// 	tickers = [
+	// 		tickers
+	// 	];
+	// }
+	// //trying to catch errors if tics are not made - does not work though
+	// if (ticker.length != tickers.length) {
+	// 	const { redtics, deletedTics } = checkTics(tickers);
+	// 	tickers = redtics;
+	// }
 
 	return tickers;
 };
@@ -167,7 +166,7 @@ async function fetchTic(exchange, ticker) {
 async function saveTics(tickerObj) {
 	try {
 		var ticker = [];
-		for await (tic of tickerObj) {
+		for await (let tic of tickerObj) {
 			try {
 				// const { id } = tic;
 				ticker.push(
@@ -201,7 +200,7 @@ async function checkTics(tickers) {
 //get market data from Market model
 //This probably is not being used
 export const loadMarkets = async (exchange) => {
-	for await (ex of exchange) {
+	for await (let ex of exchange) {
 		let loadMar = ex.load_markets();
 	}
 };

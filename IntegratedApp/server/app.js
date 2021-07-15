@@ -26,8 +26,8 @@ import helmet from 'helmet'; //helps secure app from easy security leaks
 
 import AppError from './utils/appError.js'; //Error wrapper for dealing with errors thrown by the routes
 import User from './models/user.js'; //user model
-import * as investmentRoutes from './routes/investments.js'; //seperate out the routes to a different file
-import * as userRoutes from './routes/user.js'; //seperate out the User routes to a different file
+import investmentRoutes from './routes/investments.js'; //seperate out the routes to a different file
+import userRoutes from './routes/user.js'; //seperate out the User routes to a different file
 
 //mongoose connection to server and setup
 //local host: 'mongodb://localhost:27017/ticker' or mongo database url
@@ -181,6 +181,7 @@ app.use((err, req, res, next) => {
 
 //App connection route
 const port = process.env.PORT || 8000;
+export { port };
 app.listen(port, () => {
 	console.log(`Serving on port ${port}`);
 });

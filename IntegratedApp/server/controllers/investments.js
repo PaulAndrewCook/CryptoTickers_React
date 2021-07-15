@@ -13,7 +13,6 @@ const { boolean } = pkg;
 //Find all current tickers and update the data - is called from the DOM and back end
 export const updateTics = async (req, res) => {
 	const tickers = JSON.parse(req.body.tickers);
-
 	Promise.all([
 		updateTickers(tickers)
 	]).then(async (ticker) => {
@@ -26,7 +25,7 @@ export const updateTics = async (req, res) => {
 export const index = async (req, res) => {
 	const ticker = await indexTics();
 	const pageName = 'welcome';
-	const updateTics = true;
+	let updateTics = true;
 	res.render('investments/index', { ticker, updateTics, pageName });
 };
 
@@ -53,7 +52,7 @@ export const home = async (req, res) => {
 			k++;
 		}
 	}
-	updateTics = k > 0 ? true : false;
+	let updateTics = k > 0 ? true : false;
 	res.render('investments/index', { ticker, updateTics, pageName });
 };
 
@@ -66,7 +65,7 @@ export const defaultHome = async (req, res) => {
 
 	const ticker = await updateTickers(tics);
 	const pageName = 'home';
-	updateTics = true;
+	let updateTics = true;
 	res.render('investments/index', { ticker, updateTics, pageName });
 };
 
@@ -102,7 +101,7 @@ export const showTicker = async (req, res, next) => {
 		return res.redirect('/investments');
 	}
 	const pageName = 'new';
-	updateTics = true;
+	let updateTics = true;
 	res.render('investments/show', { ticker, pageName });
 };
 

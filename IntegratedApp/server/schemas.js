@@ -32,11 +32,11 @@ export const investmentsSchema = Joi.object({
 		exchange : Joi.string().required().escapeHTML(),
 		symbol   : Joi.string().required().escapeHTML(),
 		crypto   : Joi.boolean()
-	}).required(),
+	}),
 	stock    : Joi.object({
 		symbol : Joi.string().escapeHTML(),
 		crypto : Joi.boolean()
-	}).required()
+	})
 });
 
 //Add later for reviews

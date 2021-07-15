@@ -13,7 +13,7 @@ const update = document.querySelector('#autoUpdate');
 
 //check to see how long ago the tickers were updated
 //updates when greater than duration (min)
-const duration = 5;
+const duration = 1;
 const updateDom = timeCheck(duration);
 
 //eventlistener fires when DOM is ready
@@ -108,6 +108,7 @@ async function goLive() {
 //update each ticker when we have new info
 async function domUpdate(tickers) {
 	try {
+		console.log('updatetics, tickers', tickers);
 		for (tic of tickers) {
 			const div = document.getElementById(tic._id);
 			const last = document.getElementById(`${tic._id}_last`);
