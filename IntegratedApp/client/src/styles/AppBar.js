@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 		// marginLeft                   : 0,
 		width                        : '100%',
 		[theme.breakpoints.up('sm')]: {
-			marginLeft : theme.spacing(25),
+			marginLeft : theme.spacing(20),
 			width      : 'auto'
 		}
 	},
@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 			width : '20ch'
 		},
 		'&:focus'                    : {
-			width : '50ch'
+			width : '30ch'
 		},
 		textAlign                    : 'center'
 	},

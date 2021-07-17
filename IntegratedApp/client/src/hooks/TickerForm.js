@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import UseInput from './hooks/UseInput';
-import { DispatchContext } from './context/TickerContext';
+import UseInput from './UseInput';
+import { DispatchContext } from '../context/TickerContext';
 import { Paper, TextField } from '@material-ui/core';
 
 export default function TickerForm() {

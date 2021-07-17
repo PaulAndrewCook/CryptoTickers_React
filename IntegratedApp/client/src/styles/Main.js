@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-	main    : {
+	main       : {
 		padding    : 0,
 		margin     : 0,
 		height     : '100vh',
@@ -9,7 +9,12 @@ const useStyles = makeStyles((theme) => ({
 		background : 'primary',
 		elevation  : 3
 	},
-	dark    : {
+	container  : {
+		justifyContent : 'center',
+		alignItems     : 'center',
+		textAlign      : 'center'
+	},
+	dark       : {
 		padding    : 0,
 		margin     : 0,
 		height     : '100vh',
@@ -17,11 +22,45 @@ const useStyles = makeStyles((theme) => ({
 		background : 'black',
 		elevation  : 3
 	},
-	form    : {
-		margin  : '2rem 0',
-		padding : '0 1rem'
+	form       : {
+		margin         : '2rem 0',
+		padding        : '0 1rem',
+		justifyContent : 'center'
 	},
-	tickers : {}
+
+	ticker     : {
+		display               : 'flex',
+		height                : '64px',
+		flexWrap              : 'nowrap',
+		flexGrow              : 1,
+		'& .appearItem'       : {
+			display : 'none'
+		},
+		'&:hover .appearItem' : {
+			display : 'inline-block'
+		}
+	},
+	tickerGrid : {
+		direction       : 'row',
+		justifyContent  : 'space-between',
+		alignItems      : 'center',
+		'& .alignRight' : {
+			textAlign : 'right'
+		}
+	}
+	// displayTicker : {
+	// 	display        : 'flex',
+	// 	grow           : '1',
+	// 	alignItems     : 'center',
+	// 	justifyContent : 'flex-start'
+	// },
+	// displayBox    : {
+	// 	display        : 'flex',
+	// 	alignItems     : 'center',
+	// 	justifyContent : 'flex-start',
+	// 	width          : '100px',
+	// 	textAlign      : 'right'
+	// }
 }));
 
 export { useStyles };

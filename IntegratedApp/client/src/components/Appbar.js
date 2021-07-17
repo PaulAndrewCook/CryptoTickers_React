@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import UseInput from '../hooks/UseInput';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -14,8 +15,16 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import { useStyles } from '../styles/AppBar';
 import { ThemeContext } from '../context/ThemeContext';
 
+//API call to create Ticker
+import { createTicker } from '../actions/ApiTickerFns';
+
 export default function PrimarySearchAppBar() {
 	const classes = useStyles();
+	const [
+		value,
+		handleChange,
+		reset
+	] = UseInput('');
 	const [
 		anchorEl,
 		setAnchorEl
@@ -114,14 +123,27 @@ export default function PrimarySearchAppBar() {
 						<div className={classes.searchIcon}>
 							<SearchIcon />
 						</div>
-						<InputBase
-							placeholder="Search…"
-							classes={{
-								root  : classes.inputRoot,
-								input : classes.inputInput
+
+						<form
+							onSubmit={(data) => {
+								data.preventDefault();
+								console.log('form onsubmit called: data', data);
+								createTicker(data);
+								// dispatch({ type: 'ADD', ticker: value });
+								reset();
 							}}
-							inputProps={{ 'aria-label': 'search' }}
-						/>
+						>
+							<InputBase
+								value={value}
+								onChange={handleChange}
+								placeholder="Search…"
+								classes={{
+									root  : classes.inputRoot,
+									input : classes.inputInput
+								}}
+								inputProps={{ 'aria-label': 'search' }}
+							/>
+						</form>
 					</div>
 
 					<div className={classes.grow} />

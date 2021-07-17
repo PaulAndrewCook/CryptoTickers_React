@@ -1,6 +1,6 @@
 import React, { createContext } from 'react';
-import { UseLocalStorageReducer } from '../reducers/UseLocalStorageReducer';
-import TickerReducer from '../reducers/TickerReducer';
+import { UseLocalStorageReducer } from '../_reducers/UseLocalStorageReducer';
+import TickerReducer from '../_reducers/TickerReducer';
 import { v4 as uuidv4 } from 'uuid';
 const DefaultTickers = [
 	{
@@ -24,29 +24,6 @@ const DefaultTickers = [
 		ticId   : uuidv4(),
 		id      : 1,
 		pinned  : true
-	},
-	{
-		baseVolume  : 2786.41837401,
-		change      : 455.2999999999993,
-		close       : 31861.2,
-		creator     : '606bdf2554204c4a7270a8bc',
-		crypto      : true,
-		date        : 'Jul 17, 2021',
-		datetime    : '2021-07-17T19:55:46.259Z',
-		doNotDelete : false,
-		exchange    : 'kraken',
-		high        : 31967.1,
-		last        : 31861.2,
-		low         : 31175.2,
-		open        : 31405.9,
-		percentage  : null,
-		reviews     : [],
-		symbol      : 'BTC/USD',
-		ticker      : 'Bitcoin',
-		time        : '1:55:46 PM MDT',
-		__v         : 0,
-		_id         : '607a0941ca201219560f36d3',
-		pinned      : true
 	}
 ];
 export const TickerContext = createContext();
