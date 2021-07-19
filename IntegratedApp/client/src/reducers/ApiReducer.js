@@ -16,15 +16,9 @@ function UseApiReducer(key, initVal, reducer) {
 		return val;
 	});
 	//UseEffect to update local storage when local storage is changed
-	useEffect(
-		() => {
-			window.localStorage.setItem(key, JSON.stringify(state));
-		},
-		[
-			state,
-			key
-		]
-	);
+	useEffect(() => {
+		window.localStorage.setItem(key, JSON.stringify(state));
+	});
 	return [
 		state,
 		dispatch

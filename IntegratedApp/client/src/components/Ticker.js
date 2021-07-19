@@ -1,12 +1,12 @@
 import React, { useContext, memo } from 'react';
-import UseToggle from './hooks/UseToggle';
-import EditTickerForm from './hooks/EditTickerForm';
-import { DispatchContext } from './context/TickerContext';
-import { useStyles } from './styles/Main';
+import UseToggle from '../hooks/UseToggle';
+import EditTickerForm from '../hooks/EditTickerForm';
+import { DispatchContext } from '../context/TickerContext';
+import { useStyles } from '../styles/Main';
 import { ListItem, ListItemText, ListItemSecondaryAction, IconButton, ListItemIcon, Grid } from '@material-ui/core';
 import { StarBorderRounded, StarRounded, EditSharp } from '@material-ui/icons';
 
-function Ticker({ ticker, ticId, pinned, value, change, symbol, percent }) {
+function Ticker({ ticker, _id, pinned, last, change, symbol, percentage }) {
 	const dispatch = useContext(DispatchContext);
 	const classes = useStyles();
 
@@ -18,24 +18,24 @@ function Ticker({ ticker, ticId, pinned, value, change, symbol, percent }) {
 	return (
 		<ListItem button className={classes.ticker}>
 			{isEditing ? (
-				<EditTickerForm ticId={ticId} ticker={ticker} toggleEditForm={toggle} />
+				<EditTickerForm _id={_id} ticker={ticker} toggleEditForm={toggle} />
 			) : (
 				<React.Fragment>
 					<Grid container className={classes.tickerGrid}>
-						<Grid item xs={1}>
+						{/* <Grid item xs={1}>
 							<ListItemIcon>{symbol}</ListItemIcon>
-						</Grid>
+						</Grid> */}
 						<Grid item xs={3}>
-							<ListItemText>{ticker}</ListItemText>
+							<ListItemText>{symbol}</ListItemText>
 						</Grid>
 						<Grid item xs={2} className="alignRight">
-							<ListItemText>{`$${value}`}</ListItemText>
+							<ListItemText>{`$${last.toFixed(2)}`}</ListItemText>
 						</Grid>
 						<Grid item xs={2} className="alignRight">
-							<ListItemText>{`$${change}`}</ListItemText>
+							<ListItemText>{`$${change.toFixed(2)}`}</ListItemText>
 						</Grid>
 						<Grid item xs={2} className="alignRight">
-							<ListItemText>{`${percent}%`}</ListItemText>
+							<ListItemText>{`${percentage.toFixed(2)}%`}</ListItemText>
 						</Grid>
 						<Grid item xs={2} className="alignRight">
 							<ListItemSecondaryAction>
@@ -45,14 +45,14 @@ function Ticker({ ticker, ticId, pinned, value, change, symbol, percent }) {
 								{pinned ? (
 									<IconButton
 										className="appearItem"
-										onClick={() => dispatch({ type: 'REMOVE', ticId: ticId })}
+										onClick={() => dispatch({ type: 'REMOVE', _id: _id })}
 									>
 										<StarRounded aria-label="Filled Star Ticker Pinned: Delete" />
 									</IconButton>
 								) : (
 									<IconButton
 										className="appearItem"
-										onClick={() => dispatch({ type: 'PINTICKER', ticId: ticId })}
+										onClick={() => dispatch({ type: 'PINTICKER', _id: _id })}
 									>
 										<StarBorderRounded aria-label="Open Star Pin Ticker" />
 									</IconButton>
