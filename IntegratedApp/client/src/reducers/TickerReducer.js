@@ -1,24 +1,15 @@
-import { v4 as uuidv4 } from 'uuid';
-
 const reducer = (state, action) => {
-	const newTics = action.payload.ticker;
-	console.log('3. in reducer: payload', action.payload.ticker, 'newTics', newTics);
+	const newTics = action.payload;
+	console.log('in reducer: payload', action.payload, 'newTics', newTics);
 
 	switch (action.type) {
 		case 'ADD':
 			return [
-				...state, newTics];
-				state.map((tic) => (
-					{key    : uuidv4(),
-					id     : state.length + 1,
-					ticker : action.ticker,
-					symbol : action.symbol,
-					crypto : action.crypto,
-					pinned : false
-					})
+				...state,
+				newTics
 			];
 		case 'GET':
-			return (state = action.payload.ticker);
+			return action.payload;
 		case 'REMOVE':
 			return state.filter((ticker) => ticker.ticId !== action.ticId);
 		case 'PINTICKER':

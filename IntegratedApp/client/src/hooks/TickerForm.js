@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import UseInput from './UseInput';
 import { DispatchContext } from '../context/TickerContext';
 import { Paper, TextField } from '@material-ui/core';
+import { createTicker } from '../actions/ApiTickerFns';
 
 export default function TickerForm() {
 	const dispatch = useContext(DispatchContext);
@@ -15,7 +16,8 @@ export default function TickerForm() {
 			<form
 				onSubmit={(e) => {
 					e.preventDefault();
-					dispatch({ type: 'ADD', ticker: value });
+					createTicker(value)(dispatch);
+					// dispatch({ type: 'ADD', ticker: value });
 					reset();
 				}}
 			>

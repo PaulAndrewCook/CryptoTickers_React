@@ -3,7 +3,7 @@ import UseToggle from '../hooks/UseToggle';
 import EditTickerForm from '../hooks/EditTickerForm';
 import { DispatchContext } from '../context/TickerContext';
 import { useStyles } from '../styles/Main';
-import { ListItem, ListItemText, ListItemSecondaryAction, IconButton, ListItemIcon, Grid } from '@material-ui/core';
+import { ListItem, ListItemText, ListItemSecondaryAction, IconButton, Grid } from '@material-ui/core'; //ListItemIcon,
 import { StarBorderRounded, StarRounded, EditSharp } from '@material-ui/icons';
 
 function Ticker({ ticker, _id, pinned, last, change, symbol, percentage }) {

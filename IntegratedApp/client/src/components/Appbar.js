@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
-import UseInput from '../hooks/UseInput';
+// import { DispatchContext } from '../context/TickerContext';
+// import UseInput from '../hooks/UseInput';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
+// import InputBase from '@material-ui/core/InputBase';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 // import MenuIcon from '@material-ui/icons/Menu';
@@ -16,15 +17,17 @@ import { useStyles } from '../styles/AppBar';
 import { ThemeContext } from '../context/ThemeContext';
 
 //API call to create Ticker
-import { createTicker } from '../actions/ApiTickerFns';
+// import { createTicker } from '../actions/ApiTickerFns';
+import TickerForm from '../hooks/TickerForm';
 
 export default function PrimarySearchAppBar() {
+	// const dispatch = useContext(DispatchContext);
 	const classes = useStyles();
-	const [
-		value,
-		handleChange,
-		reset
-	] = UseInput('');
+	// const [
+	// 	value,
+	// 	handleChange,
+	// 	reset
+	// ] = UseInput('');
 	const [
 		anchorEl,
 		setAnchorEl
@@ -124,11 +127,18 @@ export default function PrimarySearchAppBar() {
 							<SearchIcon />
 						</div>
 
-						<form
+						<TickerForm
+							classes={{
+								root  : classes.inputRoot,
+								input : classes.inputInput
+							}}
+							inputProps={{ 'aria-label': 'search' }}
+						/>
+						{/* <form
 							onSubmit={(data) => {
 								data.preventDefault();
-								console.log('form onsubmit called: data', data);
-								createTicker(data);
+								console.log('form onsubmit called: data', value);
+								createTicker(value)(dispatch);
 								// dispatch({ type: 'ADD', ticker: value });
 								reset();
 							}}
@@ -143,7 +153,7 @@ export default function PrimarySearchAppBar() {
 								}}
 								inputProps={{ 'aria-label': 'search' }}
 							/>
-						</form>
+						</form> */}
 					</div>
 
 					<div className={classes.grow} />

@@ -1,24 +1,24 @@
 import React, { useContext, useEffect } from 'react';
 import { TickerContext, DispatchContext } from './context/TickerContext';
-import { getTickers } from './actions/ApiTickerFns';
+import { updateTickers } from './actions/ApiTickerFns';
 import Ticker from './components/Ticker';
 import { List, Paper, Divider } from '@material-ui/core';
 
 export default function InvestmentList() {
-	// const tickers = useContext(TickerContext);
+	const tickers = useContext(TickerContext);
 	const dispatch = useContext(DispatchContext);
+
+	//This uses the curry functionality coming from ApiTickerFns.
 	useEffect(
 		() => {
-			getTickers()(dispatch);
+			// getTickers()(dispatch);
+			updateTickers(tickers)(dispatch);
 		},
 		[
 			dispatch
 		]
 	);
-	//This should use the curry functionality.
-	// const tickers = getTickers()(dispatch);
 
-	const tickers = useContext(TickerContext);
 	console.log('in list, tickers', tickers);
 	if (tickers)
 		return (
