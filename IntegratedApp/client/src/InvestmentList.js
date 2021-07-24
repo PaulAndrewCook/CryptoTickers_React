@@ -9,15 +9,10 @@ export default function InvestmentList() {
 	const dispatch = useContext(DispatchContext);
 
 	//This uses the curry functionality coming from ApiTickerFns.
-	useEffect(
-		() => {
-			// getTickers()(dispatch);
-			updateTickers(tickers)(dispatch);
-		},
-		[
-			dispatch
-		]
-	);
+	useEffect(() => {
+		// getTickers()(dispatch);
+		updateTickers(tickers)(dispatch);
+	}, []);
 
 	console.log('in list, tickers', tickers);
 	if (tickers)

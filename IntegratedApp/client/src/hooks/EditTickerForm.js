@@ -3,19 +3,21 @@ import UseInput from './UseInput';
 import { DispatchContext } from '../context/TickerContext';
 import { TextField, ListItemSecondaryAction, IconButton } from '@material-ui/core';
 import { NotInterestedSharp } from '@material-ui/icons';
+import { editTicker } from '../actions/ApiTickerFns';
 
-function EditTickerForm({ ticId, ticker, toggleEditForm }) {
+function EditTickerForm({ id, symbol, toggleEditForm }) {
 	const dispatch = useContext(DispatchContext);
 	const [
 		value,
 		handleChange,
 		reset
-	] = UseInput(ticker);
+	] = UseInput(symbol);
 	return (
 		<form
 			onSubmit={(e) => {
 				e.preventDefault();
-				dispatch({ type: 'EDIT', ticId: ticId, newTicker: value });
+				editTicker(id, value)(dispatch);
+				// dispatch({ type: 'EDIT', ticId: ticId, newTicker: value });
 				reset();
 				toggleEditForm();
 			}}

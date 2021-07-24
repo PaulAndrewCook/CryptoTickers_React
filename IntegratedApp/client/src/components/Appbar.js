@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 // import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
+// import SearchIcon from '@material-ui/icons/Search';
 import { Switch, FormControlLabel } from '@material-ui/core';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
@@ -18,11 +18,12 @@ import { ThemeContext } from '../context/ThemeContext';
 
 //API call to create Ticker
 // import { createTicker } from '../actions/ApiTickerFns';
-import TickerForm from '../hooks/TickerForm';
+// import TickerForm from '../hooks/TickerForm';
 
 export default function PrimarySearchAppBar() {
 	// const dispatch = useContext(DispatchContext);
 	const classes = useStyles();
+
 	// const [
 	// 	value,
 	// 	handleChange,
@@ -123,17 +124,18 @@ export default function PrimarySearchAppBar() {
 						Investments
 					</Typography>
 					<div className={classes.search}>
-						<div className={classes.searchIcon}>
+						{/* <div className={classes.searchIcon}>
 							<SearchIcon />
-						</div>
+						</div> */}
 
-						<TickerForm
+						{/* <TickerForm
 							classes={{
 								root  : classes.inputRoot,
 								input : classes.inputInput
 							}}
 							inputProps={{ 'aria-label': 'search' }}
-						/>
+						/> */}
+
 						{/* <form
 							onSubmit={(data) => {
 								data.preventDefault();

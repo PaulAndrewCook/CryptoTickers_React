@@ -23,6 +23,7 @@ const DefaultTickers = [
 		time        : '1:55:46 PM MDT',
 		__v         : 0,
 		_id         : '607a0f5ecf0ac71a285f6c44',
+		ticId       : '607a0f5ecf0ac71a285f6c44',
 		pinned      : true
 	},
 	{
@@ -46,6 +47,7 @@ const DefaultTickers = [
 		time        : '1:55:46 PM MDT',
 		__v         : 0,
 		_id         : '607a09d0ca201219560f36d7',
+		ticId       : '607a09d0ca201219560f36d7',
 		pinned      : true
 	},
 	{
@@ -69,6 +71,7 @@ const DefaultTickers = [
 		time        : '1:55:46 PM MDT',
 		__v         : 0,
 		_id         : '607a0993ca201219560f36d5',
+		ticId       : '607a0993ca201219560f36d5',
 		pinned      : true
 	},
 	{
@@ -92,6 +95,7 @@ const DefaultTickers = [
 		time        : '1:55:46 PM MDT',
 		__v         : 0,
 		_id         : '607a0941ca201219560f36d3',
+		ticId       : '607a0941ca201219560f36d3',
 		pinned      : true
 	}
 ];

@@ -6,6 +6,7 @@ import TimeButtons from './components/TimeButtons';
 import { Paper, Grid } from '@material-ui/core';
 import { useStyles } from './styles/Main';
 import { ThemeContext } from './context/ThemeContext';
+import DropdownCombobox from './hooks/UseVirtualList';
 
 export default function InvestmentApp() {
 	const { isDarkMode } = useContext(ThemeContext);
@@ -16,9 +17,9 @@ export default function InvestmentApp() {
 			<TickerProvider>
 				<PrimarySearchAppBar />
 				<Grid container className={classes.container}>
-					{/* <Grid item xs={11} md={8} lg={4} className={classes.form}>
-						<TickerForm />
-					</Grid> */}
+					<Grid item xs={11} md={8} lg={4} className={classes.form}>
+						<DropdownCombobox />
+					</Grid>
 					<Grid item xs={11} md={8} lg={4}>
 						<TimeButtons />
 					</Grid>
