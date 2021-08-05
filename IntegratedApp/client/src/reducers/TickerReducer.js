@@ -12,10 +12,15 @@ const reducer = (state, action) => {
 			return state.map((ticker) => (ticker._id === newTic.id ? newTic : ticker));
 		case 'GET':
 			console.log('in reducer: GET action.payload', action.payload);
-			return action.payload;
+			const filtered = state.filter(Boolean);
+			return filtered;
+		// return action.payload;
+		case 'SET':
+			console.log('in reducer: SET action.payload', action.payload.tickers);
+			return action.payload.tickers;
 		case 'REMOVE':
-			console.log('in reducer: Remove id', action.id);
-			return state.filter((ticker) => ticker._id !== action.id);
+			console.log('in reducer: Remove, newTic ', newTic, 'id', action.payload);
+			return state.filter((ticker) => ticker._id !== newTic);
 		case 'PINTICKER':
 			return state.map((ticker) => (ticker._id === action.id ? { ...ticker, pinned: true } : ticker));
 		case 'EDIT':

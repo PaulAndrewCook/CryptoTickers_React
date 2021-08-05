@@ -1,8 +1,15 @@
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { grey } from '@material-ui/core/colors';
+import { alpha, makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
 	grow           : {
 		flexGrow : 1
+	},
+	appbar         : {
+		display        : 'flex',
+		position       : 'static',
+		justifyContent : 'space-between',
+		flexWrap       : 'nowrap'
 	},
 	menuButton     : {
 		marginRight : theme.spacing(2)
@@ -14,18 +21,20 @@ const useStyles = makeStyles((theme) => ({
 		}
 	},
 	search         : {
-		position                     : 'relative',
+		color                        : 'inherit',
+		display                      : 'flex',
+		flexGrow                     : 2,
+		align                        : 'center',
 		borderRadius                 : theme.shape.borderRadius,
-		backgroundColor              : fade(theme.palette.common.white, 0.15),
+		backgroundColor              : alpha(theme.palette.common.white, 0.05),
 		'&:hover'                    : {
-			backgroundColor : fade(theme.palette.common.white, 0.25)
+			backgroundColor : alpha(theme.palette.common.white, 0.15)
 		},
 		// marginRight                  : theme.spacing(2),
 		// marginLeft                   : 0,
-		width                        : '100%',
+		maxWidth                     : '500px',
 		[theme.breakpoints.up('sm')]: {
-			marginLeft : theme.spacing(20),
-			width      : 'auto'
+			marginLeft : theme.spacing(-11)
 		}
 	},
 	searchIcon     : {
@@ -67,13 +76,28 @@ const useStyles = makeStyles((theme) => ({
 			display : 'none'
 		}
 	},
-	appbar         : {
-		display        : 'flex',
-		position       : 'static',
-		justifyContent : 'space-between'
-	},
 	toolbar        : {
 		justifyContent : 'space-between'
+	},
+	menuNavLink    : {
+		textDecoration : 'none'
+	},
+	activeLink     : {
+		borderBottom : '1px solid grey'
+	},
+	dataInitials   : {
+		background    : '#303f9f',
+		color         : 'white',
+		opacity       : 1,
+		display       : 'inline-block',
+		fontWeight    : 'bold',
+		borderRadius  : '50%',
+		verticalAlign : 'middle',
+		marginRight   : '0.5em',
+		width         : '50px',
+		height        : '50px',
+		lineHeight    : '50px',
+		textAlign     : 'center'
 	}
 }));
 

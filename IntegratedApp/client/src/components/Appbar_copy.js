@@ -1,10 +1,16 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
+// import { DispatchContext } from '../context/TickerContext';
+// import UseInput from '../hooks/UseInput';
 import AppBar from '@material-ui/core/AppBar';
+import { NavLink } from 'react-router-dom';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
+// import InputBase from '@material-ui/core/InputBase';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+// import MenuIcon from '@material-ui/icons/Menu';
+// import SearchIcon from '@material-ui/icons/Search';
 import { Switch, FormControlLabel } from '@material-ui/core';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
@@ -12,28 +18,33 @@ import { useStyles } from '../styles/AppBar';
 import { ThemeContext } from '../context/ThemeContext';
 import { UserContext } from '../context/UserContext';
 
-//Components for searching and logging in
+//API call to create Ticker
+// import DropdownCombobox from '../hooks/UseVirtualList';
+// import Select from 'react-select';
 import Searchbar from '../components/Searchbar';
 import Login from '../components/Login';
-
-const intials = (user) => {
-	console.log('in appbar iniital, user:', user, 'usrname', user.user.user.username);
-	return user.user.user.username.charAt(0).toUpperCase();
-};
+// import { createTicker } from '../actions/ApiTickerFns';
+// import TickerForm from '../hooks/TickerForm';
 
 export default function PrimarySearchAppBar() {
+	// const dispatch = useContext(DispatchContext);
 	const classes = useStyles();
 	const user = useContext(UserContext);
 	console.log('in appbar, user', user);
 
+	// const [
+	// 	value,
+	// 	handleChange,
+	// 	reset
+	// ] = UseInput('');
 	const [
 		anchorEl,
 		setAnchorEl
-	] = useState(null);
+	] = React.useState(null);
 	const [
 		mobileMoreAnchorEl,
 		setMobileMoreAnchorEl
-	] = useState(null);
+	] = React.useState(null);
 
 	const { isDarkMode, toggleTheme } = useContext(ThemeContext);
 
@@ -127,12 +138,55 @@ export default function PrimarySearchAppBar() {
 		<div className={classes.grow}>
 			<AppBar className={classes.appbar} color={isDarkMode ? 'default' : 'primary'}>
 				<Toolbar className={classes.toolbar}>
+					{/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="open drawer">
+						<MenuIcon />
+					</IconButton> */}
 					<Typography className={classes.title} variant="h6" noWrap>
 						CryptoTickers
 					</Typography>
 					<div className={classes.search}>
 						<Searchbar />
+
+						{/* <div className={classes.form}>
+							<DropdownCombobox />
+						</div>
+
+						<div className={classes.searchIcon}>
+							<SearchIcon />
+						</div> */}
+
+						{/* <Select options={options} /> */}
+
+						{/* <TickerForm
+							classes={{
+								root  : classes.inputRoot,
+								input : classes.inputInput
+							}}
+							inputProps={{ 'aria-label': 'search' }}
+						/> */}
+						{/* <form
+							onSubmit={(data) => {
+								data.preventDefault();
+								console.log('form onsubmit called: data', value);
+								createTicker(value)(dispatch);
+								// dispatch({ type: 'ADD', ticker: value });
+								reset();
+							}}
+						>
+							<InputBase
+								value={value}
+								onChange={handleChange}
+								placeholder="Search…"
+								classes={{
+									root  : classes.inputRoot,
+									input : classes.inputInput
+								}}
+								inputProps={{ 'aria-label': 'search' }}
+							/>
+						</form> */}
 					</div>
+
+					{/* <div className={classes.grow} /> */}
 					<div className={classes.sectionDesktop}>
 						<IconButton
 							edge="end"
@@ -142,7 +196,7 @@ export default function PrimarySearchAppBar() {
 							onClick={handleProfileMenuOpen}
 							color="inherit"
 						>
-							{user ? <div className={classes.dataInitials}>{intials({ user })}</div> : <AccountCircle />}
+							<AccountCircle />
 						</IconButton>
 					</div>
 					<div className={classes.sectionMobile}>

@@ -32,7 +32,8 @@ export default function DropdownCombobox() {
 		highlightedIndex,
 		selectedItem,
 		getComboboxProps,
-		isOpen
+		isOpen,
+		openMenu
 	} = useCombobox({
 		items,
 		inputValue,
@@ -43,7 +44,7 @@ export default function DropdownCombobox() {
 	return (
 		<div>
 			<div>
-				<label {...getLabelProps()}>Add Investment:</label>
+				<label {...getLabelProps()} />
 				<div {...getComboboxProps()} style={comboboxStyles}>
 					<form
 						onSubmit={(e) => {
@@ -53,7 +54,17 @@ export default function DropdownCombobox() {
 							setInputValue('');
 						}}
 					>
-						<input {...getInputProps({ type: 'text' })} />
+						<input
+							{...getInputProps({
+								type    : 'text',
+								onFocus : () => {
+									if (!isOpen) {
+										openMenu();
+									}
+								}
+							})}
+							placeholder="Add Investment"
+						/>
 					</form>
 				</div>
 			</div>

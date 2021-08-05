@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 		elevation  : 3
 	},
 	form       : {
-		margin         : '2rem 0',
+		margin         : '2rem 0 0 0',
 		padding        : '0 1rem',
 		justifyContent : 'center'
 	},
@@ -48,19 +48,6 @@ const useStyles = makeStyles((theme) => ({
 			textAlign : 'right'
 		}
 	}
-	// displayTicker : {
-	// 	display        : 'flex',
-	// 	grow           : '1',
-	// 	alignItems     : 'center',
-	// 	justifyContent : 'flex-start'
-	// },
-	// displayBox    : {
-	// 	display        : 'flex',
-	// 	alignItems     : 'center',
-	// 	justifyContent : 'flex-start',
-	// 	width          : '100px',
-	// 	textAlign      : 'right'
-	// }
 }));
 
 export { useStyles };
