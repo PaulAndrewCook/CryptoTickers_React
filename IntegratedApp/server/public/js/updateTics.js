@@ -80,6 +80,8 @@ function getTicData() {
 	return Promise.all([
 		//axios puts everything into a string - for nested objects we need to use URLSearchParams.
 		//modified axios to hit relative route instead of 'http://localhost:3000/investments/updateTics'
+		console.log('in updateTics: params sent to axios', params),
+
 		axios
 			.post('/investments/updateTics', params)
 			.then((tics) => {
@@ -108,7 +110,6 @@ async function goLive() {
 //update each ticker when we have new info
 async function domUpdate(tickers) {
 	try {
-		console.log('updatetics, tickers', tickers);
 		for (tic of tickers) {
 			const div = document.getElementById(tic._id);
 			const last = document.getElementById(`${tic._id}_last`);

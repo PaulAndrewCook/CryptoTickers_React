@@ -2,6 +2,7 @@ import User from '../../models/user.js'; //user model
 import Ticker from '../../models/stocks.js'; //Ticker Model
 import Markets from '../../models/markets.js'; //markets Model
 import ccxt from 'ccxt'; //crypto api - create all tic data
+import { v4 as uuidv4 } from 'uuid';
 import { port } from '../../app.js';
 import { DateTime } from 'luxon'; //convert date and time of tic into usable info
 import NODE_ICU_DATA from 'full-icu'; //for luxon - datetime-> to get local timezone
@@ -18,6 +19,7 @@ export const makeTics = async (userId, baseTics) => {
 		ticker.creator = userId;
 		await ticker.save();
 		const { id } = ticker;
+
 		const user = await User.findByIdAndUpdate(
 			userId,
 			{ $push: { tickers: id } },
@@ -56,11 +58,11 @@ export const indexTics = async () => {
 		];
 		//localhost tickers
 		const localIndex = [
-			'607a0941ca201219560f36d3',
+			'6100623f0f41c4279a3bb8fa',
 			// '607a09bbca201219560f36d6',
-			'607a0993ca201219560f36d5',
-			'607a09d0ca201219560f36d7',
-			'607a0f5ecf0ac71a285f6c44'
+			'6100627c0f41c4279a3bb903',
+			'610062cc0f41c4279a3bb915',
+			'607f40501dbc91a96d3b9a6e'
 		];
 		const index = port === 8000 ? localIndex : productionIndex;
 		var tickers = [];
@@ -75,7 +77,7 @@ export const indexTics = async () => {
 //Takes in ticker Symbol, outputs ticker data
 export const updateTickers = async (ticker) => {
 	const tickerObj = [];
-	const exc = 'coinbase';
+	const exc = 'binance';
 	if (!Array.isArray(ticker)) {
 		ticker = [
 			ticker
@@ -85,13 +87,19 @@ export const updateTickers = async (ticker) => {
 	ticker = ticker.flat(1);
 
 	//can this be moved to seperate fn to only be called once per user?
-	const exchange = ticker.map((tic) => {
+	const exchange = await ticker.map((tic) => {
 		return tic.crypto
 			? new ccxt[tic.exchange]({
 					enableRateLimit : true
 				})
 			: new ccxt[exc]();
 	});
+
+	// (async () => {
+	// 	await exchange.loadMarkets();
+	// 	let symbols = exchange.symbols;
+	// 	console.log('in datafetch: symbols', symbols);
+	// }) ()
 
 	// fetch('https://worldtimeapi.org/api/ip')
 	// 	.then((response) => response.json())
@@ -109,6 +117,12 @@ export const updateTickers = async (ticker) => {
 					} else {
 						tickers[i].change = 0.0;
 					}
+				}
+				if (!tickers[i].percentage) {
+					tickers[i].percentage = tickers[i].change / tickers[i].last * 100;
+				}
+				if (!tickers[i].key) {
+					tickers[i].key = uuidv4();
 				}
 				//This instance of dateTime returns server time (UTC), we use client time by running this process in the DOM
 				let { datetime } = tickers[i];
@@ -137,7 +151,6 @@ export const updateTickers = async (ticker) => {
 	// 	const { redtics, deletedTics } = checkTics(tickers);
 	// 	tickers = redtics;
 	// }
-
 	return tickers;
 };
 
@@ -174,8 +187,7 @@ async function saveTics(tickerObj) {
 				);
 			} catch (err) {
 				console.log('Error in saving tic');
-				console.log('ticker in error');
-				console.log(ticker);
+				console.log(tic, err);
 				// console.error(err);
 				continue;
 			}

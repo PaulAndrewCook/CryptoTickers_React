@@ -4,6 +4,29 @@ import Ticker from './models/stocks.js'; //Ticker Model
 import User from './models/user.js'; // user Model
 import { updateTickers, makeTics } from './public/js/ticDataFetch.js'; //js functions for updating tics
 
+/////BEGIN API FNS ///////
+
+//check to see if user is logged in
+export const APIisLoggedIn = (req, res, next) => {
+	if (!req.isAuthenticated()) {
+		return res.json({ error: 'You must be signed in to do that!' });
+	}
+	next();
+};
+
+//check to see if user created the tickers being displayed
+export const APIisAuthor = async (req, res, next) => {
+	const { id } = req.params;
+	const userId = req.user._id;
+	const ticker = await Ticker.findById(id);
+	if (!ticker.creator.equals(userId)) {
+		return res.json({ error: 'You do NOT have permission to do that!' });
+	}
+	next();
+};
+
+/////END API FNS ///////
+
 //check to see if user is logged in
 export const isLoggedIn = (req, res, next) => {
 	if (!req.isAuthenticated()) {

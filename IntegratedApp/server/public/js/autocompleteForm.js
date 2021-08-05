@@ -4,7 +4,6 @@
 function loadSymbols() {
 	var symbol = [];
 	var b = document.getElementById('exchange');
-	console.log('in auto comp, exchange', b);
 	var sel = b.options[b.selectedIndex].text;
 	var selKey = b.selectedIndex;
 	var c = document.getElementById('hideCurr');

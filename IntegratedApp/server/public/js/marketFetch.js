@@ -8,9 +8,7 @@ export const marketFetch = async () => {
 	const excs = [
 		'aax',
 		'binance',
-		'bittrex',
 		'bitvavo',
-		'bytetrade',
 		'currencycom',
 		'ftx',
 		'gopax',

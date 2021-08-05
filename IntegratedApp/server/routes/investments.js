@@ -1,8 +1,19 @@
 import express from 'express'; // back end web application framework for Node.js
 const router = express.Router({ mergeParams: true }); //call express router
 import wrapAsync from '../utils/catchAsync.js'; //call the async wrapper to catch all errors
-import { isLoggedIn, isAuthor, validateInput, isAdmin } from '../middleware.js'; //middleware that checks to see if user is logged in
+import { APIisLoggedIn, isLoggedIn, isAuthor, validateInput, isAdmin } from '../middleware.js'; //middleware that checks to see if user is logged in
 import * as investments from '../controllers/investments.js'; //call the investment controller
+
+//API External Endpoints
+router
+	.route('/api')
+	.get(wrapAsync(investments.APIindex)) //Welcome page with set tickers
+	.post(wrapAsync(investments.APIcreateNewTicker))
+	.patch(wrapAsync(investments.APIeditTicker)) //Edit a ticker
+	.delete(wrapAsync(investments.APIdeleteTicker)); //Delete a ticker
+
+//Update sent tickers from React
+router.get('/APIupdateTics', wrapAsync(investments.APIupdateTics));
 
 //Welcome page with set tickers
 router.get('/', wrapAsync(investments.index));
@@ -13,7 +24,7 @@ router.post('/updateTics', wrapAsync(investments.updateTics));
 //Personalized investments
 router.route('/home').get(isLoggedIn, wrapAsync(investments.home)).post(isLoggedIn, wrapAsync(investments.defaultHome));
 
-//Delete and load market symbols for
+//Delete and load market symbols for initial start
 router.get('/markets', isLoggedIn, isAdmin, wrapAsync(investments.markets));
 
 //create a new investment crypto or stock

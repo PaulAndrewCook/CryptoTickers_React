@@ -1,5 +1,55 @@
 import User from '../models/user.js';
 
+export const APIregister = async (req, res, next) => {
+	try {
+		const { email, username, password } = JSON.parse(req.query.user);
+		const user = new User({ email, username });
+		const regisUser = await User.register(user, password);
+		console.log('in User controller: going to  login, user', regisUser);
+
+		req.login(regisUser, (err) => {
+			if (err) return next(err);
+		});
+		res.json({
+			success  : `Welcome to your Investments, ${regisUser.username}!`,
+			email    : regisUser.email,
+			username : regisUser.username
+		});
+	} catch (e) {
+		res.json({ error: e });
+	}
+};
+
+export const APIlogin = async (req, res) => {
+	try {
+		console.log(
+			'in User controller: coming from react: query',
+			req.query,
+			'body',
+			req.query.username,
+			'params',
+			req.query.password
+		);
+		const { username } = req.query;
+		const user = await User.find(username);
+
+		res.json({
+			success  : `Welcome to your Investments, ${user.username}!`,
+			username : user.username
+		});
+	} catch (error) {
+		res.json({ error });
+	}
+};
+
+export const APIlogout = async (req, res, next) => {
+	req.logout();
+	// res.json({ success: 'Goodbye! See you again soon!'});
+	next();
+};
+
+//// END API FNs /////////
+
 export const renderRegister = (req, res) => {
 	const pageName = 'register';
 	res.render('users/register', { pageName });

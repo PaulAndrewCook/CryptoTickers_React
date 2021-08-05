@@ -63,7 +63,7 @@ app.use(
 		name              : 'cryptotickers',
 		secret,
 		resave            : false,
-		saveUninitialized : true,
+		saveUninitialized : false,
 		store             : MongoStore.create({
 			mongoUrl   : dbUrl,
 			touchAfter : 24 * 3600 // time period in seconds
