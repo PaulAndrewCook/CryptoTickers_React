@@ -1,5 +1,5 @@
 const reducer = (state, action) => {
-	const newTic = action.payload;
+	var newTic = action.payload;
 	switch (action.type) {
 		case 'LOADING':
 			console.log('in reducer: Loading state:', state, 'action.payload', action.payload);
@@ -9,6 +9,7 @@ const reducer = (state, action) => {
 			];
 		case 'ADD':
 			console.log('in reducer: ADD newtics', newTic, 'payload', action.payload);
+			state.message('New Ticker Added:');
 			return state.map((ticker) => (ticker._id === newTic.id ? newTic : ticker));
 		case 'GET':
 			console.log('in reducer: GET action.payload', action.payload);

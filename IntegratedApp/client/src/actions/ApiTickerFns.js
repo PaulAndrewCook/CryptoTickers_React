@@ -35,7 +35,7 @@ export const editTicker = (ticId, Ticker, userId) => async (dispatch) => {
 export const deleteTicker = (id, userId) => async (dispatch, userdispatch) => {
 	const { data } = await api.deleteTicker(id, userId);
 	console.log('delete ticker returned', data);
-	dispatch({ type: 'REMOVE', payload: id });
+	dispatch({ type: 'REMOVE', payload: data });
 	userdispatch({ type: 'SET', payload: data });
 };
 

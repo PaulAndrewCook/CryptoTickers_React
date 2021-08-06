@@ -5,6 +5,7 @@ import { DispatchContext } from '../context/TickerContext';
 import { loginUser, registerUser, logoutUser } from '../actions/UserActions';
 import {
 	Button,
+	Link,
 	TextField,
 	Dialog,
 	DialogActions,
@@ -31,13 +32,16 @@ export default function Login() {
 		setOpen(true);
 	};
 	const handleRegisterOpen = (e) => {
+		console.log('in logging in, register, isLoggingin open', isLoggingIn);
 		e.preventDefault();
 		setOpen(true);
 		toggle(false);
+		console.log('in logging in, register, isLoggingin close', isLoggingIn);
 	};
 
 	const handleClose = () => {
 		setOpen(false);
+		toggle(false);
 	};
 
 	const handleLogin = (event) => {
@@ -66,39 +70,55 @@ export default function Login() {
 
 	return (
 		<div>
-			{!user ? (
-				<React.Fragment>
-					<Button
-						color="inherit"
-						onClick={handleClickOpen}
-						aria-label="Login to account"
-						aria-controls="login-link"
-					>
-						Login
-					</Button>
-
-					<Button
-						color="inherit"
-						onClick={handleRegisterOpen}
-						aria-label="Register"
-						aria-controls="Register-link"
-					>
-						Register
-					</Button>
-				</React.Fragment>
-			) : (
-				<Button
+			{Boolean(user.user) ? (
+				<Link
+					href="#"
 					color="inherit"
+					style={{
+						paddingTop : '10px'
+					}}
 					onClick={(evt) => handleLogout(user, evt)}
 					aria-label="Loutout"
 					aria-controls="Logout-link"
 				>
 					Logout
-				</Button>
+				</Link>
+			) : (
+				<React.Fragment>
+					<Link
+						href="#"
+						color="inherit"
+						display="block"
+						style={{
+							paddingTop : '5px'
+						}}
+						onClick={handleClickOpen}
+						aria-label="Login to account"
+						aria-controls="login-link"
+					>
+						Login
+					</Link>
+
+					<Link
+						href="#"
+						color="inherit"
+						display="block"
+						style={{
+							paddingTop    : '10px',
+							paddingBottom : '3px'
+						}}
+						onClick={handleRegisterOpen}
+						aria-label="Register"
+						aria-controls="Register-link"
+					>
+						Register
+					</Link>
+				</React.Fragment>
 			)}
 			{isLoggingIn ? (
 				<Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
 					<DialogTitle id="form-dialog-title">Please Login</DialogTitle>
+
 					<DialogContent>
 						<DialogContentText>Create your own personal Tickers!</DialogContentText>
 						<form
@@ -126,18 +146,18 @@ export default function Login() {
 								type="password"
 								fullWidth
 							/>
-							<Button type="submit" form="loginForm" size="large" color="primary">
-								Login
-							</Button>
 						</form>
 					</DialogContent>
 
 					<DialogActions>
+						<Button onClick={toggle} color="default" style={{ marginRight: 'auto' }}>
+							Register
+						</Button>
 						<Button onClick={handleClose} color="secondary">
 							Cancel
 						</Button>
-						<Button onClick={toggle} color="default">
-							Register
+						<Button type="submit" form="loginForm" size="large" color="primary">
+							Login
 						</Button>
 					</DialogActions>
 				</Dialog>
@@ -180,18 +200,19 @@ export default function Login() {
 								type="password"
 								fullWidth
 							/>
-							<Button type="submit" form="registerForm" size="large" color="primary">
-								Register
-							</Button>
 						</form>
 					</DialogContent>
 
 					<DialogActions>
+						<Button onClick={toggle} color="default" style={{ marginRight: 'auto' }}>
+							Login
+						</Button>
 						<Button onClick={handleClose} color="secondary">
 							Cancel
 						</Button>
-						<Button onClick={toggle} color="default">
-							Login
+
+						<Button type="submit" form="registerForm" size="large" color="primary">
+							Register
 						</Button>
 					</DialogActions>
 				</Dialog>

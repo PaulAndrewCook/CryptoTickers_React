@@ -11,14 +11,15 @@ const useStyles = makeStyles((theme) => ({
 		justifyContent : 'space-between',
 		flexWrap       : 'nowrap'
 	},
-	menuButton     : {
-		marginRight : theme.spacing(2)
-	},
 	title          : {
 		display                      : 'none',
 		[theme.breakpoints.up('sm')]: {
 			display : 'block'
 		}
+	},
+	menuItem       : {
+		paddingTop    : '10px',
+		paddingBottom : '0px'
 	},
 	search         : {
 		color                        : 'inherit',

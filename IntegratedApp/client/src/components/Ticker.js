@@ -4,6 +4,7 @@ import { UserDispatchContext, UserContext } from '../context/UserContext';
 import { deleteTicker } from '../actions/ApiTickerFns';
 import UseTickerForm from '../hooks/UseTickerForm';
 import { DispatchContext } from '../context/TickerContext';
+import { SnackDispatchContext } from '../context/SnackContext';
 import { useStyles } from '../styles/Main';
 import { ListItem, ListItemText, ListItemSecondaryAction, IconButton, Grid } from '@material-ui/core'; //ListItemIcon,
 import { Clear, EditSharp } from '@material-ui/icons';
@@ -13,6 +14,7 @@ function Ticker({ ticker, _id, pinned, last, change, symbol, percentage, updatin
 	const userdispatch = useContext(UserDispatchContext);
 	const classes = useStyles();
 	const user = useContext(UserContext);
+	const snackdispatch = useContext(SnackDispatchContext);
 
 	const [
 		isEditing,
@@ -71,7 +73,7 @@ function Ticker({ ticker, _id, pinned, last, change, symbol, percentage, updatin
 											onClick={(e) => {
 												e.stopPropagation();
 
-												deleteTicker(_id, user.user._id)(dispatch, userdispatch);
+												deleteTicker(_id, user.user._id)(dispatch, userdispatch, snackdispatch);
 												// dispatch({ type: 'REMOVE', id: _id });
 											}}
 										>

@@ -5,7 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import { Switch, FormControlLabel } from '@material-ui/core';
+import { Switch, FormControlLabel, Divider } from '@material-ui/core';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { useStyles } from '../styles/AppBar';
@@ -17,7 +17,7 @@ import Searchbar from '../components/Searchbar';
 import Login from '../components/Login';
 
 const intials = (user) => {
-	console.log('in appbar iniital, user:', user, 'usrname', user.user.user.username);
+	console.log('in appbar iniital, user:', user, 'usrname', user.user.username);
 	return user.user.user.username.charAt(0).toUpperCase();
 };
 
@@ -25,6 +25,14 @@ export default function PrimarySearchAppBar() {
 	const classes = useStyles();
 	const user = useContext(UserContext);
 	console.log('in appbar, user', user);
+	var username = 'Welcome';
+	var email = null;
+	console.log('in appbar, user truth', Boolean(user.user));
+
+	if (Boolean(user.user) === true) {
+		username = user.user.username;
+		email = user.user.email;
+	}
 
 	const [
 		anchorEl,
@@ -68,11 +76,14 @@ export default function PrimarySearchAppBar() {
 			open={isMenuOpen}
 			onClose={handleMenuClose}
 		>
-			{/* <MenuItem>{user}</MenuItem> */}
-			<MenuItem>
-				<Login />
+			<div className={classes.menuUserInfo}>
+				<MenuItem>{username}</MenuItem>
+				<MenuItem>{email}</MenuItem>
+			</div>
+			<Divider />
+			<MenuItem className={classes.menuItem}>
+				<Login className={classes.menuButton} />
 			</MenuItem>
-			<MenuItem onClick={handleMenuClose}>My account</MenuItem>
 			<FormControlLabel
 				control={
 					<Switch
@@ -108,16 +119,6 @@ export default function PrimarySearchAppBar() {
 				>
 					<AccountCircle />
 				</IconButton>
-				{/* <NavLink
-					to="/login"
-					exact
-					activeClassName="activeLink"
-					aria-label="Login to account"
-					aria-controls="login-link"
-					style={{ textDecoration: 'none' }}
-				>
-					Login
-				</NavLink> */}
 				<Login />
 			</MenuItem>
 		</Menu>
@@ -142,7 +143,11 @@ export default function PrimarySearchAppBar() {
 							onClick={handleProfileMenuOpen}
 							color="inherit"
 						>
-							{user ? <div className={classes.dataInitials}>{intials({ user })}</div> : <AccountCircle />}
+							{Boolean(user.user) === true ? (
+								<div className={classes.dataInitials}>{intials({ user })}</div>
+							) : (
+								<AccountCircle />
+							)}
 						</IconButton>
 					</div>
 					<div className={classes.sectionMobile}>
