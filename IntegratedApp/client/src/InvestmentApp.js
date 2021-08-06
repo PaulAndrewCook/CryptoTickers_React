@@ -8,7 +8,11 @@ import { Paper, Grid } from '@material-ui/core';
 import { useStyles } from './styles/Main';
 import { ThemeContext } from './context/ThemeContext';
 
+//Timebuttons and dark/light mode -> currently not working
+
+//Main page format for app -> user providers to pass info to components
 export default function InvestmentApp() {
+	//Set dark or light more -> currently not working
 	const { isDarkMode } = useContext(ThemeContext);
 
 	const classes = useStyles();
@@ -18,9 +22,6 @@ export default function InvestmentApp() {
 				<TickerProvider>
 					<PrimarySearchAppBar />
 					<Grid container className={classes.container}>
-						{/* <Grid item xs={11} md={8} lg={4} className={classes.form}>
-						<DropdownCombobox />
-					</Grid> */}
 						<Grid item xs={11} md={8} lg={4}>
 							<TimeButtons />
 						</Grid>

@@ -23,12 +23,11 @@ const intials = (user) => {
 
 export default function PrimarySearchAppBar() {
 	const classes = useStyles();
-	const user = useContext(UserContext);
-	console.log('in appbar, user', user);
-	var username = 'Welcome';
+	const user = useContext(UserContext); // get user via context
+	var username = 'Welcome'; // set default welcome
 	var email = null;
-	console.log('in appbar, user truth', Boolean(user.user));
 
+	//Test if user is logged in or not then set username and email
 	if (Boolean(user.user) === true) {
 		username = user.user.username;
 		email = user.user.email;

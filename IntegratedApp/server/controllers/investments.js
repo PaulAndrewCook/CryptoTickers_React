@@ -19,26 +19,17 @@ export const APIindex = async (req, res) => {
 	Promise.all([
 		updateTickers(ticker)
 	]).then(async (ticker) => {
-		console.log('in API controller: Coming Back: ticker', ticker);
 		res.json({ tickers: ticker.flat(1), user: null });
 	});
 };
 
 //Create new ticker from NONuser selection
 export const APIcreateNewTicker = async (req, res) => {
-	// const currency = [
-	// 	req.body.currency
-	// ];
-	console.log('in API controller: coming from react: query', req.query, 'body', req.body, 'params', req.params);
+	// console.log('in API controller: coming from react: query', req.query, 'body', req.body, 'params', req.params);
 
 	const tic = JSON.parse(req.query.ticker);
 	const { user } = JSON.parse(req.query.user);
 	const symbol = tic.symbol;
-	console.log('in API controller: Going to Update: user', user);
-	// const symbol = tic.Ticker;
-	// const [
-	// 	symbol
-	// ] = Object.keys(req.body.Ticker);
 
 	const currency = [
 		{ exchange: 'binance', symbol: symbol, crypto: true }
@@ -48,7 +39,6 @@ export const APIcreateNewTicker = async (req, res) => {
 	const userId = user ? user._id : '606bdf2554204c4a7270a8bc';
 
 	const { ticker } = await makeTics(userId, currency);
-	console.log('in API controller: Going to Update: ticker', ticker);
 
 	Promise.all([
 		updateTickers(ticker)
@@ -69,7 +59,6 @@ export const APIupdateTics = async (req, res) => {
 	Promise.all([
 		updateTickers(tickers)
 	]).then(async (ticker) => {
-		console.log('controller back from update - tickers:', ticker);
 		res.json(ticker.flat(1));
 	});
 };
@@ -100,14 +89,11 @@ export const APIhome = async (req, res) => {
 	const [
 		user
 	] = await User.find({ username: username });
-	console.log('ticker controller, user', user);
 	var ticker = await Ticker.find({ creator: user._id });
-	console.log('ticker controller, tickers', ticker, 'ticker lenght', ticker.length);
 
 	if (ticker && !ticker.length) {
 		ticker = await indexTics();
 	}
-	console.log('ticker controller, tickers after default', ticker);
 	Promise.all([
 		updateTickers(ticker)
 	]).then(async (ticker) => {
@@ -123,7 +109,6 @@ export const APIdeleteTicker = async (req, res) => {
 	var tickers = await Ticker.findByIdAndDelete(id);
 
 	const user = await User.findByIdAndUpdate(userId, { $pull: { tickers: id } }, { new: true }); //pull the deleted ticker from the user's saved ticker
-	console.log('in apidelte, user', user);
 	res.json({ user });
 };
 

@@ -1,12 +1,10 @@
 import axios from 'axios';
 
-// const url = 'http://localhost:8000/investments/';
+//api endpoint
 const url = 'http://localhost:8000/investments/api';
 
-//if adding in the console.log make sure to include the return call
-
+//export fns for CRUD heading to API endpoint via axios calls
 export const createTicker = (ticker, user) => {
-	console.log('axios post: url', url, 'ticker', ticker, 'user', user);
 	return axios.post(
 		url,
 		{ headers: { 'Content-Type': 'application/json' } },
@@ -19,7 +17,6 @@ export const getTickers = () => {
 };
 export const editTicker = (id, ticker) => {
 	return axios.patch(url, { headers: { 'Content-Type': 'application/json' } }, { params: { id, ticker } });
-	// export const editTicker = (id, ticker) => axios.patch(`${url}/${id}`, ticker);
 };
 
 export const deleteTicker = (id, userId) => {
@@ -28,6 +25,5 @@ export const deleteTicker = (id, userId) => {
 
 export const updateTickers = (tickers) => {
 	const url = 'http://localhost:8000/investments/APIupdateTics';
-	console.log('axios get: url', url, 'tickers', tickers);
 	return axios.get(url, { params: { tickers: tickers } });
 };

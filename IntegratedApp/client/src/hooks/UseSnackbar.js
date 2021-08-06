@@ -3,6 +3,8 @@ import { SnackContext } from '../context/SnackContext';
 import { Snackbar, IconButton } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 
+//Material UI snackbar -> currently not working -> not a fn
+//probably an issue with the context creation
 export default function UseSnackbar() {
 	const snacks = useContext(SnackContext);
 	console.log('in snackbar, snacks', snacks);

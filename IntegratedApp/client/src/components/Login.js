@@ -14,6 +14,9 @@ import {
 	DialogTitle
 } from '@material-ui/core';
 
+//Login functionality called in the appbar
+//Get user details and send to correct dispatch
+
 export default function Login() {
 	const userdispatch = useContext(UserDispatchContext);
 	const dispatch = useContext(DispatchContext);
@@ -32,11 +35,9 @@ export default function Login() {
 		setOpen(true);
 	};
 	const handleRegisterOpen = (e) => {
-		console.log('in logging in, register, isLoggingin open', isLoggingIn);
 		e.preventDefault();
 		setOpen(true);
 		toggle(false);
-		console.log('in logging in, register, isLoggingin close', isLoggingIn);
 	};
 
 	const handleClose = () => {
@@ -47,7 +48,6 @@ export default function Login() {
 	const handleLogin = (event) => {
 		event.preventDefault();
 		const data = new FormData(event.target);
-		console.log('in login: data', data, 'username', data.get('username'), data.get('password'));
 		loginUser({ username: data.get('username'), password: data.get('password') })(userdispatch, dispatch);
 		handleClose();
 	};
@@ -63,7 +63,6 @@ export default function Login() {
 	};
 	const handleLogout = (user, event) => {
 		event.preventDefault();
-		console.log('in login / logout, user', user);
 		logoutUser({ username: user.username })(userdispatch, dispatch);
 		handleClose();
 	};

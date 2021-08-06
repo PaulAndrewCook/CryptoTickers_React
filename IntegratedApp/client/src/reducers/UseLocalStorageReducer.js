@@ -2,7 +2,7 @@ import { useReducer, useEffect } from 'react';
 
 function UseLocalStorageReducer(key, initVal, reducer) {
 	//Make piece of state based off of value in localstorage
-	console.log('3 in local storage: key', key, 'initval', initVal);
+	// console.log('3 in local storage: key', key, 'initval', initVal);
 	const [
 		state,
 		dispatch

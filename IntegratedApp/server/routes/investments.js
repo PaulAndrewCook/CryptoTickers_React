@@ -4,7 +4,8 @@ import wrapAsync from '../utils/catchAsync.js'; //call the async wrapper to catc
 import { APIisLoggedIn, isLoggedIn, isAuthor, validateInput, isAdmin } from '../middleware.js'; //middleware that checks to see if user is logged in
 import * as investments from '../controllers/investments.js'; //call the investment controller
 
-//API External Endpoints
+//API External Endpoints for CryptoTickers
+//Calls controllers/investments
 router
 	.route('/api')
 	.get(wrapAsync(investments.APIindex)) //Welcome page with set tickers

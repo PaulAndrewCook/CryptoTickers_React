@@ -4,17 +4,18 @@ import { updateTickers } from './actions/ApiTickerFns';
 import Ticker from './components/Ticker';
 import { List, Paper, Divider } from '@material-ui/core';
 
+//Main page for function and component calling
 export default function InvestmentList() {
+	//get current details from context
 	const tickers = useContext(TickerContext);
 	const dispatch = useContext(DispatchContext);
 
 	//This uses the curry functionality coming from ApiTickerFns.
+	//Use only once in the beginning to set the tickers quickly
 	useEffect(() => {
-		// getTickers()(dispatch);
 		updateTickers(tickers)(dispatch);
 	}, []);
 
-	console.log('in list, tickers', tickers);
 	if (tickers)
 		return (
 			<Paper>

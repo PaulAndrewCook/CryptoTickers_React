@@ -109,7 +109,6 @@ export const DispatchContext = createContext();
 export function TickerProvider(props) {
 	const user = useContext(UserContext);
 	const defaultTics = user ? user.tickers : DefaultTickers;
-	console.log('2. in context user:', user, 'children', user.tickers);
 	const [
 		tickers,
 		dispatch

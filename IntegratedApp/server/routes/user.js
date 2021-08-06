@@ -5,7 +5,7 @@ import wrapAsync from '../utils/catchAsync.js';
 import * as user from '../controllers/user.js';
 import * as investments from '../controllers/investments.js'; //call the investment controller
 
-/// BEGIN API ROUTES ///
+/// BEGIN API Endpoint ROUTES ///
 router.route('/APIregister').post(wrapAsync(user.APIregister));
 
 router.route('/APIlogin').post(passport.authenticate('local'), investments.APIhome);

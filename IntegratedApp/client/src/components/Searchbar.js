@@ -6,6 +6,10 @@ import { DispatchContext } from '../context/TickerContext';
 import { UserContext } from '../context/UserContext';
 import SearchIcon from '@material-ui/icons/Search';
 
+//Main searchbar component called from appbar
+//calls autoload of tickers and exports to ticker dispatch for api call
+//windowselect wrapped around react-select to ensure scroll functionality
+
 const groupStyles = {
 	display        : 'flex',
 	alignItems     : 'center',
@@ -82,7 +86,6 @@ const Placeholder = (props) => {
 export default function Searchbar() {
 	const dispatch = useContext(DispatchContext);
 	const user = useContext(UserContext);
-	console.log('in searchbar, user', user);
 
 	const [
 		value,

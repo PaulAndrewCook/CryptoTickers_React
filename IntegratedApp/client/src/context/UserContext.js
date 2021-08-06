@@ -6,7 +6,6 @@ export const UserContext = createContext();
 export const UserDispatchContext = createContext();
 
 export function UserProvider(props) {
-	console.log('User context props:', props, 'children', props.children);
 	const [
 		user,
 		userdispatch

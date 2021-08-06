@@ -1,11 +1,12 @@
 import User from '../models/user.js';
 
+//API Endpoints for USER Login, register, and logout
+// Exports to routes/user
 export const APIregister = async (req, res, next) => {
 	try {
 		const { email, username, password } = JSON.parse(req.query.user);
 		const user = new User({ email, username });
 		const regisUser = await User.register(user, password);
-		console.log('in User controller: going to  login, user', regisUser);
 
 		req.login(regisUser, (err) => {
 			if (err) return next(err);
@@ -44,7 +45,6 @@ export const APIlogin = async (req, res) => {
 
 export const APIlogout = async (req, res, next) => {
 	req.logout();
-	// res.json({ success: 'Goodbye! See you again soon!'});
 	next();
 };
 

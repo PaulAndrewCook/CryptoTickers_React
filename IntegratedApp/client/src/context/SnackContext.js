@@ -5,6 +5,7 @@ const DefaultSnack = 'Welcome!';
 export const SnackContext = createContext();
 export const SnackDispatchContext = createContext();
 
+//contect provider for snackbar component -> does not work!
 export function SnackProvider(props) {
 	console.log('Snack context props:', props, 'children', props.children);
 	const [
