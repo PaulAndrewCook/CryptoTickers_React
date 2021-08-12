@@ -22,10 +22,10 @@ export default function InvestmentApp() {
 				<TickerProvider>
 					<PrimarySearchAppBar />
 					<Grid container className={classes.container}>
-						<Grid item xs={11} md={8} lg={4}>
+						<Grid item xs={11} md={8} lg={8}>
 							<TimeButtons />
 						</Grid>
-						<Grid item xs={11} md={8} lg={4} className={classes.tickers}>
+						<Grid item xs={11} md={8} lg={8} className={classes.tickers}>
 							<InvestmentList />
 						</Grid>
 					</Grid>
