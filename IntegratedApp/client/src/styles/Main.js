@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-	main       : {
+	main        : {
 		padding    : 0,
 		margin     : 0,
 		height     : '100vh',
@@ -9,26 +9,25 @@ const useStyles = makeStyles((theme) => ({
 		background : 'primary',
 		elevation  : 3
 	},
-	container  : {
+	container   : {
 		justifyContent : 'center',
 		alignItems     : 'center',
 		textAlign      : 'center'
 	},
-	dark       : {
+	dark        : {
 		padding    : 0,
 		margin     : 0,
 		height     : '100vh',
 		width      : '100vw',
-		background : 'black',
-		elevation  : 3
+		background : 'black'
 	},
-	form       : {
+	form        : {
 		margin         : '2rem 0 0 0',
 		padding        : '0 1rem',
 		justifyContent : 'center'
 	},
 
-	ticker     : {
+	ticker      : {
 		display               : 'flex',
 		height                : '64px',
 		flexWrap              : 'nowrap',
@@ -38,14 +37,22 @@ const useStyles = makeStyles((theme) => ({
 		},
 		'&:hover .appearItem' : {
 			display : 'inline-block'
+		},
+		'& .dark'             : {
+			background : 'black'
 		}
 	},
-	tickerGrid : {
+	tickerGrid  : {
 		direction       : 'row',
 		justifyContent  : 'space-between',
 		alignItems      : 'center',
 		'& .alignRight' : {
 			textAlign : 'right'
+		}
+	},
+	darkTickers : {
+		'& .MuiPaper-root' : {
+			backgroundColor : 'purple'
 		}
 	}
 }));

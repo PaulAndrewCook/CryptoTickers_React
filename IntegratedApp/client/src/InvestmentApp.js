@@ -25,7 +25,7 @@ export default function InvestmentApp() {
 						<Grid item xs={11} md={8} lg={8}>
 							<TimeButtons />
 						</Grid>
-						<Grid item xs={11} md={8} lg={8} className={classes.tickers}>
+						<Grid item xs={11} md={8} lg={8} className={isDarkMode ? classes.darkTickers : classes.ticker}>
 							<InvestmentList />
 						</Grid>
 					</Grid>
