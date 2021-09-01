@@ -17,7 +17,6 @@ import Searchbar from '../components/Searchbar';
 import Login from '../components/Login';
 
 const intials = (user) => {
-	console.log('in appbar iniital, user:', user, 'usrname', user.user.username);
 	return user.user.user.username.charAt(0).toUpperCase();
 };
 

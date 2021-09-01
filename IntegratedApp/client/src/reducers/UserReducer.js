@@ -9,10 +9,10 @@ const reducer = (state, action) => {
 			console.log('in reducer: REGISTER', newUser, 'payload', action.payload);
 			return newUser;
 		case 'LOGOUT':
-			console.log('in reducer: Logout action.payload', action.payload);
+			console.log('in user reducer: Logout action.payload', action.payload);
 			return newUser;
 		case 'SET':
-			console.log('in reducer: SET action.payload', action.payload);
+			console.log('in user reducer: SET action.payload', action.payload);
 			return newUser;
 		default:
 			return state;

@@ -19,13 +19,14 @@ export const APIindex = async (req, res) => {
 	Promise.all([
 		updateTickers(ticker)
 	]).then(async (ticker) => {
+		console.log('going back to react, apiIndex, ticker', ticker);
 		res.json({ tickers: ticker.flat(1), user: null });
 	});
 };
 
 //Create new ticker from NONuser selection
 export const APIcreateNewTicker = async (req, res) => {
-	// console.log('in API controller: coming from react: query', req.query, 'body', req.body, 'params', req.params);
+	console.log('in API controller: coming from react: query', req.query, 'body', req.body, 'params', req.params);
 
 	const tic = JSON.parse(req.query.ticker);
 	const { user } = JSON.parse(req.query.user);
@@ -43,7 +44,7 @@ export const APIcreateNewTicker = async (req, res) => {
 	Promise.all([
 		updateTickers(ticker)
 	]).then(async (ticker) => {
-		console.log('in API controller: Coming Back: ticker', ticker);
+		console.log('in API controller: Coming Back: New ticker', ticker);
 		res.json(ticker.flat(1));
 	});
 };
@@ -51,7 +52,8 @@ export const APIcreateNewTicker = async (req, res) => {
 //Find all current tickers and update the data - is called from React
 export const APIupdateTics = async (req, res) => {
 	var tickers = [];
-	// console.log('in API controller: coming from react: query', req.query.tickers, 'length', req.query.tickers.length);
+	console.log('in API controller: coming from react: query', req.query.tickers, 'length', req.query.tickers.length);
+
 	for (var i = 0; i < req.query.tickers.length; i++) {
 		tickers.push(JSON.parse(req.query.tickers[i]));
 	}
@@ -59,13 +61,14 @@ export const APIupdateTics = async (req, res) => {
 	Promise.all([
 		updateTickers(tickers)
 	]).then(async (ticker) => {
+		console.log('going back to react, update, ticker', ticker);
 		res.json(ticker.flat(1));
 	});
 };
 
 //Edit and update current tic with by having user select new info
 export const APIeditTicker = async (req, res) => {
-	// console.log('in API controller: coming from react: query', req.query, 'body', req.body, 'params', req.params);
+	console.log('in API controller: coming from react: query', req.query, 'body', req.body, 'params', req.params);
 	const id = req.query.id;
 	const symbol = req.query.ticker;
 	// const { id } = req.params; //Deconsturcting params
@@ -84,6 +87,7 @@ export const APIeditTicker = async (req, res) => {
 //Personalized page for displaying user tickers
 //find user (required), find user's tickers, send tickers to DOM, update DOM
 export const APIhome = async (req, res) => {
+	console.log('in API controller: coming from react: query', req.query, 'body', req.body, 'params', req.params);
 	const { username } = req.query;
 	console.log('in apihome', username);
 	const [
@@ -97,6 +101,7 @@ export const APIhome = async (req, res) => {
 	Promise.all([
 		updateTickers(ticker)
 	]).then(async (ticker) => {
+		console.log('going back to react, home, ticker', ticker);
 		res.json({ user, tickers: ticker.flat(1) });
 	});
 };
@@ -104,11 +109,13 @@ export const APIhome = async (req, res) => {
 //delete a ticker and stay on same page
 //find desired ticker to delete, remove from user's model and ticker model
 export const APIdeleteTicker = async (req, res) => {
+	console.log('in API controller: coming from react: query', req.query, 'body', req.body, 'params', req.params);
 	const id = req.query.id;
 	const userId = req.query.userId;
 	var tickers = await Ticker.findByIdAndDelete(id);
 
 	const user = await User.findByIdAndUpdate(userId, { $pull: { tickers: id } }, { new: true }); //pull the deleted ticker from the user's saved ticker
+	console.log('going back to react, delete, user', user);
 	res.json({ user });
 };
 

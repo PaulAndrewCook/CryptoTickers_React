@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 
 	ticker      : {
-		display               : 'flex',
+		// display               : 'flex',
 		height                : '64px',
 		flexWrap              : 'nowrap',
 		flexGrow              : 1,
@@ -37,9 +37,6 @@ const useStyles = makeStyles((theme) => ({
 		},
 		'&:hover .appearItem' : {
 			display : 'inline-block'
-		},
-		'& .dark'             : {
-			background : 'black'
 		}
 	},
 	tickerGrid  : {
@@ -52,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	darkTickers : {
 		'& .MuiPaper-root' : {
-			backgroundColor : 'purple'
+			backgroundColor : '#757de8'
 		}
 	}
 }));

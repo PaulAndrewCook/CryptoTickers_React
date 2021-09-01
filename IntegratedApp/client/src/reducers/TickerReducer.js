@@ -1,5 +1,6 @@
 const reducer = (state, action) => {
 	var newTic = action.payload;
+	console.log('in ticker reducer, incoming data', newTic, 'tickers', action.payload.tickers, 'state', state);
 	switch (action.type) {
 		case 'LOADING':
 			return [
