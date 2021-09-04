@@ -10,7 +10,8 @@ const reducer = (state, action) => {
 		case 'ADD':
 			return state.map((ticker) => (ticker._id === newTic.id ? newTic : ticker));
 		case 'GET':
-			const filtered = state.filter(Boolean);
+			const filtered = newTic.filter(Boolean);
+			console.log('in ticker reducer, Get, filtered', filtered);
 			return filtered;
 		// return action.payload;
 		case 'SET':
