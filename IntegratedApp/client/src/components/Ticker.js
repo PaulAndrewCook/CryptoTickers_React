@@ -25,7 +25,7 @@ function Ticker({ _id, last, change, symbol, percentage, updating }) {
 	//Display ticker detials or edit form
 	//Call delete ticker or edit form hooks as needed
 	return (
-		<ListItem button className={classes.ticker}>
+		<ListItem button>
 			{isEditing ? (
 				<UseTickerForm id={_id} symbol={symbol} toggleEditForm={toggle} />
 			) : (

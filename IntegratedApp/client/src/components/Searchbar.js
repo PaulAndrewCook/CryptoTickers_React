@@ -61,7 +61,7 @@ const customStyles = {
 	}),
 	input       : (provided, state) => ({
 		...provided,
-		color      : 'white',
+		color      : 'inherit',
 		fontFamily : 'inherit',
 		fontWeight : 'bold'
 	})

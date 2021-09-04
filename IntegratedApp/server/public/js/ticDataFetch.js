@@ -116,6 +116,7 @@ export const updateTickers = async (ticker) => {
 						tickers[i].change = tickers[i].last - tickers[i].open;
 					} else {
 						tickers[i].change = 0.0;
+						tickers[i].percentage = 0.0;
 					}
 				}
 				if (!tickers[i].percentage) {
@@ -133,11 +134,11 @@ export const updateTickers = async (ticker) => {
 				};
 				tickerObj[i] = { ...market, ...timeMerge, ...tickers[i] };
 			}
+			console.log('coming from build route, tickerObj', tickerObj);
 			return tickerObj;
 		})
 		.then(async (tickerObj) => {
 			let tickers = await saveTics(tickerObj);
-			``;
 			return tickers;
 		});
 
@@ -185,6 +186,7 @@ async function saveTics(tickerObj) {
 				ticker.push(
 					await Ticker.findByIdAndUpdate({ _id: tic.id }, { ...tic }, { new: true, useFindAndModify: false })
 				);
+				console.log('inside savetics, ticker', ticker, 'tic', tic);
 			} catch (err) {
 				console.log('Error in saving tic');
 				console.log(tic, err);
@@ -192,6 +194,7 @@ async function saveTics(tickerObj) {
 				continue;
 			}
 		}
+
 		return ticker; //should this be Ticker (the model?)
 	} catch (err) {
 		return err;
