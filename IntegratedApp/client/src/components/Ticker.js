@@ -1,5 +1,6 @@
 import React, { useContext, memo } from 'react';
 import UseToggle from '../hooks/UseToggle';
+import UseHover from '../hooks/UseHover';
 import { UserDispatchContext, UserContext } from '../context/UserContext';
 import { deleteTicker } from '../actions/ApiTickerFns';
 import UseTickerForm from '../hooks/UseTickerForm';
@@ -25,13 +26,14 @@ function Ticker({ _id, last, change, symbol, percentage, updating }) {
 	//Toggle hook to show and hide the edit and delete buttons
 	const [
 		isHovering,
-		mouseIn
-	] = UseToggle(false);
+		setIsHovering
+	] = UseHover(false);
 
 	//Display ticker detials or edit form
 	//Call delete ticker or edit form hooks as needed
+
 	return (
-		<ListItem button onMouseEnter={mouseIn} onMouseLeave={mouseIn}>
+		<ListItem button onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>
 			{isEditing ? (
 				<UseTickerForm id={_id} symbol={symbol} toggleEditForm={toggle} />
 			) : (
