@@ -183,9 +183,15 @@ async function saveTics(tickerObj) {
 		for await (let tic of tickerObj) {
 			try {
 				// const { id } = tic;
-				ticker.push(
-					await Ticker.findByIdAndUpdate({ _id: tic.id }, { ...tic }, { new: true, useFindAndModify: false })
+
+				const tempTic = await Ticker.findByIdAndUpdate(
+					{ _id: tic.id },
+					{ ...tic },
+					{ new: true, useFindAndModify: false }
 				);
+				if (tempTic) {
+					ticker.push(tempTic);
+				} else ticker.error.push(tic);
 				console.log('inside savetics, ticker', ticker, 'tic', tic);
 			} catch (err) {
 				console.log('Error in saving tic');
