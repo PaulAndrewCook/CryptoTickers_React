@@ -1,5 +1,6 @@
 import React, { useContext, memo } from 'react';
 import UseToggle from '../hooks/UseToggle';
+import UseHover from '../hooks/UseHover';
 import { UserDispatchContext, UserContext } from '../context/UserContext';
 import { deleteTicker } from '../actions/ApiTickerFns';
 import UseTickerForm from '../hooks/UseTickerForm';
@@ -22,10 +23,17 @@ function Ticker({ _id, last, change, symbol, percentage, updating }) {
 		toggle
 	] = UseToggle(false);
 
+	//Toggle hook to show and hide the edit and delete buttons
+	const [
+		isHovering,
+		setIsHovering
+	] = UseHover(false);
+
 	//Display ticker detials or edit form
 	//Call delete ticker or edit form hooks as needed
+
 	return (
-		<ListItem button>
+		<ListItem button onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>
 			{isEditing ? (
 				<UseTickerForm id={_id} symbol={symbol} toggleEditForm={toggle} />
 			) : (
@@ -63,21 +71,24 @@ function Ticker({ _id, last, change, symbol, percentage, updating }) {
 									''
 								)}
 								<Grid item xs={2} className="alignRight">
-									<ListItemSecondaryAction>
-										<IconButton className="appearItem" onClick={toggle}>
-											<EditSharp style={{ fontSize: 15 }} aria-label="edit ticker" />
-										</IconButton>
-										<IconButton
-											className="appearItem"
-											onClick={(e) => {
-												e.stopPropagation();
-												deleteTicker(_id, user.user._id)(dispatch, userdispatch);
-												// dispatch({ type: 'REMOVE', id: _id });
-											}}
-										>
-											<Clear aria-label="Filled Star Ticker Pinned: Delete" />
-										</IconButton>
-									</ListItemSecondaryAction>
+									{isHovering ? (
+										<ListItemSecondaryAction>
+											<IconButton onClick={toggle}>
+												<EditSharp style={{ fontSize: 15 }} aria-label="edit ticker" />
+											</IconButton>
+											<IconButton
+												onClick={(e) => {
+													e.stopPropagation();
+													deleteTicker(_id, user.user._id)(dispatch, userdispatch);
+													// dispatch({ type: 'REMOVE', id: _id });
+												}}
+											>
+												<Clear aria-label="Filled Star Ticker Pinned: Delete" />
+											</IconButton>
+										</ListItemSecondaryAction>
+									) : (
+										''
+									)}
 								</Grid>
 							</React.Fragment>
 						)}
@@ -89,3 +100,5 @@ function Ticker({ _id, last, change, symbol, percentage, updating }) {
 }
 
 export default memo(Ticker);
+
+// className="appearItem"
