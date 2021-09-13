@@ -1,20 +1,15 @@
 import React, { useState, useContext } from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
+import { AppBar, Grid, Toolbar, IconButton, Typography, MenuItem, Menu } from '@material-ui/core';
 import { Switch, FormControlLabel, Divider } from '@material-ui/core';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import { useStyles } from '../styles/AppBar';
-import { ThemeContext } from '../context/ThemeContext';
-import { UserContext } from '../context/UserContext';
 
 //Components for searching and logging in
 import Searchbar from '../components/Searchbar';
 import Login from '../components/Login';
+import { useStyles } from '../styles/AppBar';
+import { ThemeContext } from '../context/ThemeContext';
+import { UserContext } from '../context/UserContext';
 
 const intials = (user) => {
 	return user.user.user.username.charAt(0).toUpperCase();
@@ -129,9 +124,9 @@ export default function PrimarySearchAppBar() {
 					<Typography className={classes.title} variant="h6" noWrap>
 						CryptoTickers
 					</Typography>
-					<div className={classes.search}>
+					<Grid item xs={6} md={8} lg={8} className={classes.search}>
 						<Searchbar />
-					</div>
+					</Grid>
 					<div className={classes.sectionDesktop}>
 						<IconButton
 							edge="end"

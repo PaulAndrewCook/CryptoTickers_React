@@ -21,21 +21,23 @@ const useStyles = makeStyles((theme) => ({
 		paddingBottom : '0px'
 	},
 	search         : {
-		color                        : 'inherit',
-		display                      : 'flex',
-		flexGrow                     : 2,
-		align                        : 'center',
-		borderRadius                 : theme.shape.borderRadius,
-		backgroundColor              : alpha(theme.palette.common.white, 0.05),
-		'&:hover'                    : {
+		color           : 'inherit',
+		display         : 'flex',
+		// flexGrow                     : 2,
+		align           : 'center',
+		borderRadius    : theme.shape.borderRadius,
+		backgroundColor : alpha(theme.palette.common.white, 0.05),
+		overflow        : 'hidden',
+		textOverflow    : 'ellipsis',
+		whiteSpace      : 'nowrap',
+
+		'&:hover'       : {
 			backgroundColor : alpha(theme.palette.common.white, 0.15)
 		},
 		// marginRight                  : theme.spacing(2),
 		// marginLeft                   : 0,
-		maxWidth                     : '500px',
-		[theme.breakpoints.up('sm')]: {
-			marginLeft : theme.spacing(-11)
-		}
+		maxWidth        : '500px',
+		minWidth        : '100px'
 	},
 	searchIcon     : {
 		padding        : theme.spacing(0, 2),
@@ -77,7 +79,8 @@ const useStyles = makeStyles((theme) => ({
 		}
 	},
 	toolbar        : {
-		justifyContent : 'space-between'
+		justifyContent : 'space-between',
+		display        : 'flex'
 	},
 	menuNavLink    : {
 		textDecoration : 'none'
