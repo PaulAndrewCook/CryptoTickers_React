@@ -47,21 +47,29 @@ const useStyles = makeStyles((theme) => ({
 		},
 		'& .disabledXs'       : {
 			[theme.breakpoints.only('xs')]: {
-				disable : 'true'
+				disable : 'true',
+				display : 'none'
 			}
 		},
 		'& .enabledXs'        : {
 			[theme.breakpoints.only('xs')]: {
-				display : 'inline-block'
+				display      : 'inline-block',
+				paddingRight : '0',
+				color        : '#BEBEBE',
+				width        : '75%',
+				height       : '75%'
 			}
 		}
 	},
 	tickerGrid  : {
-		direction       : 'row',
-		justifyContent  : 'space-between',
-		alignItems      : 'center',
-		'& .alignRight' : {
+		direction                      : 'row',
+		justifyContent                 : 'space-between',
+		alignItems                     : 'center',
+		'& .alignRight'                : {
 			textAlign : 'right'
+		},
+		[theme.breakpoints.only('xs')]: {
+			paddingRight : '10px'
 		}
 	},
 	darkTickers : {
