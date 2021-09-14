@@ -36,7 +36,24 @@ const useStyles = makeStyles((theme) => ({
 			display : 'none'
 		},
 		'&:hover .appearItem' : {
-			display : 'inline-block'
+			[theme.breakpoints.up('sm')]: {
+				display : 'inline-block'
+			}
+		},
+		'& .noXsDisplay'      : {
+			[theme.breakpoints.only('xs')]: {
+				display : 'none'
+			}
+		},
+		'& .disabledXs'       : {
+			[theme.breakpoints.only('xs')]: {
+				disable : 'true'
+			}
+		},
+		'& .enabledXs'        : {
+			[theme.breakpoints.only('xs')]: {
+				display : 'inline-block'
+			}
 		}
 	},
 	tickerGrid  : {

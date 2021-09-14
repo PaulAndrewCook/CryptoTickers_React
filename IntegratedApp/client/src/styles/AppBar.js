@@ -1,45 +1,69 @@
 import { alpha, makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-	grow           : {
+	grow             : {
 		flexGrow : 1
 	},
-	appbar         : {
+	appbar           : {
 		display        : 'flex',
 		position       : 'static',
 		justifyContent : 'space-between',
 		flexWrap       : 'nowrap'
 	},
-	title          : {
-		display                      : 'none',
+	toolbar          : {
+		justifyContent : 'space-between',
+		display        : 'flex'
+	},
+	grid             : {
+		alignItems                   : 'center',
 		[theme.breakpoints.up('sm')]: {
-			display : 'block'
+			justifyContent : 'space-between'
 		}
 	},
-	menuItem       : {
+	title            : {
+		display                        : 'flex',
+		flexShrink                     : 1,
+		overflow                       : 'hidden',
+		whiteSpace                     : 'nowrap',
+		[theme.breakpoints.up('sm')]: {
+			display : 'block'
+		},
+		[theme.breakpoints.only('xs')]: {
+			justifyContent : 'center',
+			marginTop      : '10px',
+			fontSize       : '150%'
+		}
+	},
+	menuItem         : {
 		paddingTop    : '10px',
 		paddingBottom : '0px'
 	},
-	search         : {
-		color           : 'inherit',
-		display         : 'flex',
-		// flexGrow                     : 2,
-		align           : 'center',
-		borderRadius    : theme.shape.borderRadius,
-		backgroundColor : alpha(theme.palette.common.white, 0.05),
-		overflow        : 'hidden',
-		textOverflow    : 'ellipsis',
-		whiteSpace      : 'nowrap',
-
-		'&:hover'       : {
+	search           : {
+		color                        : 'inherit',
+		display                      : 'flex',
+		flexGrow                     : 2,
+		align                        : 'center',
+		maxWidth                     : '500px',
+		minWidth                     : '50%',
+		borderRadius                 : theme.shape.borderRadius,
+		backgroundColor              : alpha(theme.palette.common.white, 0.05),
+		overflow                     : 'hidden',
+		textOverflow                 : 'ellipsis',
+		whiteSpace                   : 'nowrap',
+		justifyContent               : 'center',
+		marginBottom                 : '10px',
+		'&:hover'                    : {
 			backgroundColor : alpha(theme.palette.common.white, 0.15)
 		},
-		// marginRight                  : theme.spacing(2),
-		// marginLeft                   : 0,
-		maxWidth        : '500px',
-		minWidth        : '100px'
+		[theme.breakpoints.up('sm')]: {
+			marginBottom : '0px',
+			position     : 'absolute',
+			left         : '50%',
+			top          : '50%',
+			transform    : 'translate(-50%, -50%)'
+		}
 	},
-	searchIcon     : {
+	searchIcon       : {
 		padding        : theme.spacing(0, 2),
 		height         : '100%',
 		position       : 'absolute',
@@ -48,11 +72,11 @@ const useStyles = makeStyles((theme) => ({
 		alignItems     : 'center',
 		justifyContent : 'center'
 	},
-	inputRoot      : {
+	inputRoot        : {
 		color : 'inherit'
 	},
 	//this is controlling the location of the search bar
-	inputInput     : {
+	inputInput       : {
 		padding                      : theme.spacing(1, 1, 1, 0),
 		// vertical padding + font size from searchIcon
 		paddingLeft                  : `calc(1em + ${theme.spacing(4)}px)`,
@@ -66,29 +90,25 @@ const useStyles = makeStyles((theme) => ({
 		},
 		textAlign                    : 'center'
 	},
-	sectionDesktop : {
+	sectionDesktop   : {
 		display                      : 'none',
 		[theme.breakpoints.up('md')]: {
 			display : 'flex'
 		}
 	},
-	sectionMobile  : {
+	sectionMobile    : {
 		display                      : 'flex',
 		[theme.breakpoints.up('md')]: {
 			display : 'none'
 		}
 	},
-	toolbar        : {
-		justifyContent : 'space-between',
-		display        : 'flex'
-	},
-	menuNavLink    : {
+	menuNavLink      : {
 		textDecoration : 'none'
 	},
-	activeLink     : {
+	activeLink       : {
 		borderBottom : '1px solid grey'
 	},
-	dataInitials   : {
+	dataInitials     : {
 		background    : '#303f9f',
 		color         : 'white',
 		opacity       : 1,
@@ -101,6 +121,12 @@ const useStyles = makeStyles((theme) => ({
 		height        : '50px',
 		lineHeight    : '50px',
 		textAlign     : 'center'
+	},
+	mobileMenuButton : {
+		justifyContent                 : 'flex-end',
+		[theme.breakpoints.down('sm')]: {
+			padding : '0 0 10px 10px'
+		}
 	}
 }));
 

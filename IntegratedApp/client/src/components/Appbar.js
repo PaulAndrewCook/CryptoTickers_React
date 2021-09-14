@@ -121,39 +121,44 @@ export default function PrimarySearchAppBar() {
 		<div className={classes.grow}>
 			<AppBar className={classes.appbar} color={isDarkMode ? 'default' : 'primary'}>
 				<Toolbar className={classes.toolbar}>
-					<Typography className={classes.title} variant="h6" noWrap>
-						CryptoTickers
-					</Typography>
-					<Grid item xs={6} md={8} lg={8} className={classes.search}>
-						<Searchbar />
+					<Grid container spacing={1} className={classes.grid}>
+						<Grid item xs={12} sm={3}>
+							<Typography className={classes.title} variant="h6" noWrap>
+								CryptoTickers
+							</Typography>
+						</Grid>
+						<Grid item xs={10} sm={7} md={8} className={classes.search}>
+							<Searchbar />
+						</Grid>
+						<div className={classes.sectionDesktop}>
+							<IconButton
+								edge="end"
+								aria-label="account of current user"
+								aria-controls={menuId}
+								aria-haspopup="true"
+								onClick={handleProfileMenuOpen}
+								color="inherit"
+							>
+								{Boolean(user.user) === true ? (
+									<div className={classes.dataInitials}>{intials({ user })}</div>
+								) : (
+									<AccountCircle />
+								)}
+							</IconButton>
+						</div>
+						<div className={classes.sectionMobile}>
+							<IconButton
+								aria-label="show more"
+								aria-controls={mobileMenuId}
+								aria-haspopup="true"
+								onClick={handleMobileMenuOpen}
+								color="inherit"
+								className={classes.mobileMenuButton}
+							>
+								<MoreIcon />
+							</IconButton>
+						</div>
 					</Grid>
-					<div className={classes.sectionDesktop}>
-						<IconButton
-							edge="end"
-							aria-label="account of current user"
-							aria-controls={menuId}
-							aria-haspopup="true"
-							onClick={handleProfileMenuOpen}
-							color="inherit"
-						>
-							{Boolean(user.user) === true ? (
-								<div className={classes.dataInitials}>{intials({ user })}</div>
-							) : (
-								<AccountCircle />
-							)}
-						</IconButton>
-					</div>
-					<div className={classes.sectionMobile}>
-						<IconButton
-							aria-label="show more"
-							aria-controls={mobileMenuId}
-							aria-haspopup="true"
-							onClick={handleMobileMenuOpen}
-							color="inherit"
-						>
-							<MoreIcon />
-						</IconButton>
-					</div>
 				</Toolbar>
 			</AppBar>
 			{renderMobileMenu}
