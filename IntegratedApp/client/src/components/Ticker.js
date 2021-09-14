@@ -39,7 +39,7 @@ function Ticker({ _id, last, change, symbol, percentage, updating }) {
 			) : (
 				<React.Fragment>
 					<Grid container className={classes.tickerGrid}>
-						<Grid item xs={3}>
+						<Grid item xs={3} sm={4}>
 							<ListItemText>{symbol}</ListItemText>
 						</Grid>
 
@@ -71,21 +71,25 @@ function Ticker({ _id, last, change, symbol, percentage, updating }) {
 									''
 								)}
 								<Grid item xs={1} sm={2} className="alignRight">
-									<ListItemSecondaryAction>
-										<IconButton onClick={toggle} className="disabledXs">
-											<EditSharp style={{ fontSize: 15 }} aria-label="edit ticker" />
-										</IconButton>
-										<IconButton
-											onClick={(e) => {
-												e.stopPropagation();
-												deleteTicker(_id, user.user._id)(dispatch, userdispatch);
-												// dispatch({ type: 'REMOVE', id: _id });
-											}}
-											className="enabledXs"
-										>
-											<Clear aria-label="Filled Star Ticker Pinned: Delete" />
-										</IconButton>
-									</ListItemSecondaryAction>
+									{isHovering ? (
+										<ListItemSecondaryAction>
+											<IconButton onClick={toggle} className="disabledXs appearItem">
+												<EditSharp style={{ fontSize: 15 }} aria-label="edit ticker" />
+											</IconButton>
+											<IconButton
+												onClick={(e) => {
+													e.stopPropagation();
+													deleteTicker(_id, user.user._id)(dispatch, userdispatch);
+													// dispatch({ type: 'REMOVE', id: _id });
+												}}
+												className="enabledXs appearItem"
+											>
+												<Clear aria-label="Filled Star Ticker Pinned: Delete" />
+											</IconButton>
+										</ListItemSecondaryAction>
+									) : (
+										' '
+									)}
 								</Grid>
 							</React.Fragment>
 						)}
