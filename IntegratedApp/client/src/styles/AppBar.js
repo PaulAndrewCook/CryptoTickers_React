@@ -47,9 +47,9 @@ const useStyles = makeStyles((theme) => ({
 		minWidth                     : '50%',
 		borderRadius                 : theme.shape.borderRadius,
 		backgroundColor              : alpha(theme.palette.common.white, 0.05),
-		overflow                     : 'hidden',
-		textOverflow                 : 'ellipsis',
-		whiteSpace                   : 'nowrap',
+		// overflow                     : 'hidden',
+		// textOverflow                 : 'ellipsis',
+		// whiteSpace                   : 'nowrap',
 		justifyContent               : 'center',
 		marginBottom                 : '10px',
 		'&:hover'                    : {

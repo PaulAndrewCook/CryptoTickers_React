@@ -18,11 +18,12 @@ const intials = (user) => {
 export default function PrimarySearchAppBar() {
 	const classes = useStyles();
 	const user = useContext(UserContext); // get user via context
-	var username = 'Welcome'; // set default welcome
-	var email = null;
+	var username = 'Welcome!'; // set default welcome
+	var email = 'Anonymous';
 
+	console.log('in appbar, user', user);
 	//Test if user is logged in or not then set username and email
-	if (Boolean(user.user) === true) {
+	if (Boolean(user.user)) {
 		username = user.user.username;
 		email = user.user.email;
 	}
@@ -103,7 +104,32 @@ export default function PrimarySearchAppBar() {
 			open={isMobileMenuOpen}
 			onClose={handleMobileMenuClose}
 		>
-			<MenuItem onClick={handleProfileMenuOpen}>
+			<div className={classes.menuUserInfo}>
+				<MenuItem>{username}</MenuItem>
+			</div>
+			<Divider />
+			<MenuItem className={classes.menuItem}>
+				<Login
+					className={classes.menuButton}
+					aria-label="Login to account"
+					aria-controls="account-login"
+					aria-haspopup="true"
+					color="inherit"
+				/>
+			</MenuItem>
+			<FormControlLabel
+				control={
+					<Switch
+						onChange={toggleTheme}
+						name="darkMode"
+						inputProps={{ 'aria-labelledby': 'switch-list-label-darkmode' }}
+					/>
+				}
+				label="Dark Mode"
+				labelPlacement="start"
+				edge="end"
+			/>
+			{/* <MenuItem onClick={handleProfileMenuOpen}>
 				<IconButton
 					aria-label="Login to account"
 					aria-controls="account-login"
@@ -113,7 +139,7 @@ export default function PrimarySearchAppBar() {
 					<AccountCircle />
 				</IconButton>
 				<Login />
-			</MenuItem>
+			</MenuItem> */}
 		</Menu>
 	);
 

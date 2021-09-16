@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
 		height                : '64px',
 		flexWrap              : 'nowrap',
 		flexGrow              : 1,
+		curson                : 'pointer',
 		'& .appearItem'       : {
 			display : 'none'
 		},
