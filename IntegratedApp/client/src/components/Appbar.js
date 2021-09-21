@@ -72,7 +72,7 @@ export default function PrimarySearchAppBar() {
 		>
 			<div className={classes.menuUserInfo}>
 				<MenuItem>{username}</MenuItem>
-				<MenuItem>{email}</MenuItem>
+				{(email = 'Anonymous' ? '' : <MenuItem>{email}</MenuItem>)}
 			</div>
 			<Divider />
 			<MenuItem className={classes.menuItem}>
@@ -89,6 +89,7 @@ export default function PrimarySearchAppBar() {
 				label="Dark Mode"
 				labelPlacement="start"
 				edge="end"
+				className={classes.menuItemPadding}
 			/>
 		</Menu>
 	);
@@ -128,6 +129,7 @@ export default function PrimarySearchAppBar() {
 				label="Dark Mode"
 				labelPlacement="start"
 				edge="end"
+				className={classes.menuItemPadding}
 			/>
 			{/* <MenuItem onClick={handleProfileMenuOpen}>
 				<IconButton
@@ -145,7 +147,7 @@ export default function PrimarySearchAppBar() {
 
 	return (
 		<div className={classes.grow}>
-			<AppBar className={classes.appbar} color={isDarkMode ? 'default' : 'primary'}>
+			<AppBar className={classes.appbar}>
 				<Toolbar className={classes.toolbar}>
 					<Grid container spacing={1} className={classes.grid}>
 						<Grid item xs={12} sm={3}>

@@ -5,10 +5,16 @@ const useStyles = makeStyles((theme) => ({
 		flexGrow : 1
 	},
 	appbar           : {
-		display        : 'flex',
-		position       : 'static',
-		justifyContent : 'space-between',
-		flexWrap       : 'nowrap'
+		display          : 'flex',
+		position         : 'static',
+		justifyContent   : 'space-between',
+		flexWrap         : 'nowrap',
+		'& .appbarDark'  : {
+			color : 'back'
+		},
+		'& .appbarLight' : {
+			color : 'primary'
+		}
 	},
 	toolbar          : {
 		justifyContent : 'space-between',
@@ -127,6 +133,9 @@ const useStyles = makeStyles((theme) => ({
 		[theme.breakpoints.down('sm')]: {
 			padding : '0 0 10px 10px'
 		}
+	},
+	menuItemPadding  : {
+		padding : '0 10px 0 0'
 	}
 }));
 

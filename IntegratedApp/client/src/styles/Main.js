@@ -19,7 +19,8 @@ const useStyles = makeStyles((theme) => ({
 		margin     : 0,
 		height     : '100vh',
 		width      : '100vw',
-		background : 'black'
+		background : 'black',
+		elevation  : 3
 	},
 	form        : {
 		margin         : '2rem 0 0 0',
@@ -76,6 +77,11 @@ const useStyles = makeStyles((theme) => ({
 	darkTickers : {
 		'& .MuiPaper-root' : {
 			backgroundColor : '#757de8'
+		},
+		'& .noXsDisplay'   : {
+			[theme.breakpoints.only('xs')]: {
+				display : 'none'
+			}
 		}
 	}
 }));
