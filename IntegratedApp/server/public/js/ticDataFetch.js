@@ -61,8 +61,8 @@ export const indexTics = async () => {
 			'6100623f0f41c4279a3bb8fa',
 			// '607a09bbca201219560f36d6',
 			'6100627c0f41c4279a3bb903',
-			'610062cc0f41c4279a3bb915',
-			'607f40501dbc91a96d3b9a6e'
+			'6142a45f4b34ee4beabc35fc',
+			'610062cc0f41c4279a3bb915'
 		];
 		const index = port === 8000 ? localIndex : productionIndex;
 		var tickers = [];
@@ -86,6 +86,7 @@ export const updateTickers = async (ticker) => {
 	//make sure the promise ticker has the right dimensions
 	ticker = ticker.flat(1);
 
+	console.log('in datafetch: ticker', ticker);
 	//can this be moved to seperate fn to only be called once per user?
 	const exchange = await ticker.map((tic) => {
 		return tic.crypto

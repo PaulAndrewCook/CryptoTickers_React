@@ -19,7 +19,8 @@ const useStyles = makeStyles((theme) => ({
 		margin     : 0,
 		height     : '100vh',
 		width      : '100vw',
-		background : 'black'
+		background : 'black',
+		elevation  : 3
 	},
 	form        : {
 		margin         : '2rem 0 0 0',
@@ -32,24 +33,55 @@ const useStyles = makeStyles((theme) => ({
 		height                : '64px',
 		flexWrap              : 'nowrap',
 		flexGrow              : 1,
+		curson                : 'pointer',
 		'& .appearItem'       : {
 			display : 'none'
 		},
 		'&:hover .appearItem' : {
-			display : 'inline-block'
+			[theme.breakpoints.up('sm')]: {
+				display : 'inline-block'
+			}
+		},
+		'& .noXsDisplay'      : {
+			[theme.breakpoints.only('xs')]: {
+				display : 'none'
+			}
+		},
+		'& .disabledXs'       : {
+			[theme.breakpoints.only('xs')]: {
+				disable : 'true',
+				display : 'none'
+			}
+		},
+		'& .enabledXs'        : {
+			[theme.breakpoints.only('xs')]: {
+				display      : 'inline-block',
+				paddingRight : '0',
+				color        : '#BEBEBE',
+				width        : '75%',
+				height       : '75%'
+			}
 		}
 	},
 	tickerGrid  : {
-		direction       : 'row',
-		justifyContent  : 'space-between',
-		alignItems      : 'center',
-		'& .alignRight' : {
+		direction                      : 'row',
+		justifyContent                 : 'space-between',
+		alignItems                     : 'center',
+		'& .alignRight'                : {
 			textAlign : 'right'
+		},
+		[theme.breakpoints.only('xs')]: {
+			paddingRight : '10px'
 		}
 	},
 	darkTickers : {
 		'& .MuiPaper-root' : {
 			backgroundColor : '#757de8'
+		},
+		'& .noXsDisplay'   : {
+			[theme.breakpoints.only('xs')]: {
+				display : 'none'
+			}
 		}
 	}
 }));

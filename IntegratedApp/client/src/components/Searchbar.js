@@ -5,6 +5,7 @@ import { createTicker } from '../actions/ApiTickerFns';
 import { DispatchContext } from '../context/TickerContext';
 import { UserContext } from '../context/UserContext';
 import SearchIcon from '@material-ui/icons/Search';
+import { FormatColorReset } from '@material-ui/icons';
 
 //Main searchbar component called from appbar
 //calls autoload of tickers and exports to ticker dispatch for api call
@@ -119,6 +120,9 @@ export default function Searchbar() {
 				}
 			})}
 			onChange={(evt) => handleChange(user, evt)}
+			menuPortalTarget={document.body}
+			menuPosition={'fixed'}
+			ontouchend={(evt) => handleChange(user, evt)}
 		/>
 	);
 }
