@@ -31,19 +31,20 @@ export const makeTics = async (userId, baseTics) => {
 };
 
 //optional tics for the home page
-async function defaultTics() {
+export const defaultTics = async () => {
 	const tics = [
 		{ exchange: 'binance', symbol: 'BTC/USDT', crypto: true },
-		{ exchange: 'kraken', symbol: 'ETH/USDT', crypto: true },
-		{ exchange: 'kraken', symbol: 'ADA/USDT', crypto: true },
-		{ exchange: 'binance', symbol: 'CELO/USDT', crypto: true }
+		{ exchange: 'binance', symbol: 'ETH/USDT', crypto: true },
+		{ exchange: 'binance', symbol: 'ADA/USDT', crypto: true },
+		{ exchange: 'binance', symbol: 'CELO/USDT', crypto: true },
+		{ exchange: 'binance', symbol: 'DOGE/USDT', crypto: true }
 	];
 	var tickers = [];
 	for (let i = 0; i < tics.length; i++) {
 		await tickers.push(new Ticker(tics[i]));
 	}
 	return tickers;
-}
+};
 
 //the default tickers for the index page, so we don't create them each time.
 export const indexTics = async () => {
@@ -62,7 +63,7 @@ export const indexTics = async () => {
 			// '607a09bbca201219560f36d6',
 			'6100627c0f41c4279a3bb903',
 			'610062cc0f41c4279a3bb915',
-			'607f40501dbc91a96d3b9a6e'
+			'614a994d301e0f3e71a45585'
 		];
 		const index = port === 8000 ? localIndex : productionIndex;
 		var tickers = [];
@@ -86,6 +87,7 @@ export const updateTickers = async (ticker) => {
 	//make sure the promise ticker has the right dimensions
 	ticker = ticker.flat(1);
 
+	console.log('in ticdatafetch, update, ticker', ticker);
 	//can this be moved to seperate fn to only be called once per user?
 	const exchange = await ticker.map((tic) => {
 		return tic.crypto

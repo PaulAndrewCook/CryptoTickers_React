@@ -77,9 +77,9 @@ function UseTickerForm({ id, symbol, toggleEditForm }) {
 	] = useState();
 
 	const handleChange = (id, user, data) => {
-		console.log('in usetickerform, user', user.user._id, 'data', data);
+		console.log('in usetickerform, user', user._id, 'data', data);
 		if (data) {
-			editTicker(id, data.value, user.user._id)(dispatch);
+			editTicker(id, data.value, user._id)(dispatch);
 			setValue(null);
 		}
 		toggleEditForm();

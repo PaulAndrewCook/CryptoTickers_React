@@ -4,7 +4,7 @@ import UserReducer from '../reducers/UserReducer';
 const DefaultUser = {
 	_id      : '606bdf2554204c4a7270a8bc',
 	username : 'Guest',
-	email    : 'none'
+	email    : null
 };
 export const UserContext = createContext();
 export const UserDispatchContext = createContext();

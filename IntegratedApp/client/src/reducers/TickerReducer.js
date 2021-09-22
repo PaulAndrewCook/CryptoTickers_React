@@ -12,6 +12,9 @@ const reducer = (state, action) => {
 			const filtered = state.filter(Boolean);
 			return filtered;
 		// return action.payload;
+		case 'UPDATE':
+			console.log('in tickerReducer, UPDATE, incoming data', newTic, 'state', state);
+			return action.payload;
 		case 'SET':
 			return action.payload.tickers;
 		case 'REMOVE':

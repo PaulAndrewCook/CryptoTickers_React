@@ -1,7 +1,7 @@
 import Ticker from '../models/stocks.js'; //Ticker Model
 import Markets from '../models/markets.js'; //markets Model
 import User from '../models/user.js'; //user model
-import { updateTickers, makeTics, indexTics } from '../public/js/ticDataFetch.js'; //js functions for updating tics
+import { updateTickers, makeTics, indexTics, defaultTics } from '../public/js/ticDataFetch.js'; //js functions for updating tics
 import { marketFetch } from '../public/js/marketFetch.js'; //js functions for updating market data
 import ccxt from 'ccxt'; //crypto api
 import { DateTime } from 'luxon';
@@ -15,11 +15,12 @@ const { boolean } = pkg;
 //Main route for displaying default tickers
 //Find default tics, send to DOM, update DOM with new API call
 export const APIindex = async (req, res) => {
-	const ticker = await indexTics();
+	// const ticker = await indexTics();
+	const ticker = await defaultTics();
 	Promise.all([
 		updateTickers(ticker)
 	]).then(async (ticker) => {
-		res.json({ tickers: ticker.flat(1), user: 'DefaultUser' });
+		res.json({ tickers: ticker.flat(1), user: { _id: '606bdf2554204c4a7270a8bc', username: 'Guest' } });
 	});
 };
 
@@ -59,6 +60,7 @@ export const APIupdateTics = async (req, res) => {
 	Promise.all([
 		updateTickers(tickers)
 	]).then(async (ticker) => {
+		console.log('in investment controller, update tics, tickers', ticker);
 		res.json(ticker.flat(1));
 	});
 };

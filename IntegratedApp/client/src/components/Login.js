@@ -69,7 +69,7 @@ export default function Login() {
 
 	return (
 		<div>
-			{Boolean(user.user) ? (
+			{user.username !== 'Guest' ? (
 				<Link
 					href="#"
 					color="inherit"
