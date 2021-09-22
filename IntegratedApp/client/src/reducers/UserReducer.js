@@ -1,6 +1,6 @@
 const reducer = (state, action) => {
-	const newUser = action.payload;
-	console.log('in user reducer', newUser, ' payload', action.payload);
+	const newUser = action.payload.user;
+	console.log('in user reducer, state', state, ' user', newUser);
 	switch (action.type) {
 		case 'LOGIN':
 			console.log('in User LOGIN:', state, 'action.payload', action.payload);

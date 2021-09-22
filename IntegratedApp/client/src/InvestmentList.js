@@ -10,12 +10,14 @@ export default function InvestmentList() {
 	const tickers = useContext(TickerContext);
 	const dispatch = useContext(DispatchContext);
 
+	console.log('in investment list, tickers before dispatch', tickers);
 	//This uses the curry functionality coming from ApiTickerFns.
 	//Use only once in the beginning to set the tickers quickly
 	useEffect(() => {
 		updateTickers(tickers)(dispatch);
 	}, []);
 
+	console.log('in investment list, tickers after dispatch', tickers);
 	if (tickers)
 		return (
 			<Paper>

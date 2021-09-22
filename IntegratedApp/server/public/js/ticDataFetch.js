@@ -118,7 +118,7 @@ export const updateTickers = async (ticker) => {
 						tickers[i].change = 0.0;
 					}
 				}
-				if (!tickers[i].percentage) {
+				if (!tickers[i].percentage && tickers[i].last !== 0) {
 					tickers[i].percentage = tickers[i].change / tickers[i].last * 100;
 				}
 				if (!tickers[i].key) {

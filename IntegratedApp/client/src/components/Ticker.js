@@ -22,6 +22,7 @@ function Ticker({ _id, last, change, symbol, percentage, updating }) {
 		toggle
 	] = UseToggle(false);
 
+	console.log('in ticker, user', user, 'user._id', user._id, 'id', _id);
 	//Display ticker detials or edit form
 	//Call delete ticker or edit form hooks as needed
 	return (
@@ -71,7 +72,7 @@ function Ticker({ _id, last, change, symbol, percentage, updating }) {
 											className="appearItem"
 											onClick={(e) => {
 												e.stopPropagation();
-												deleteTicker(_id, user.user._id)(dispatch, userdispatch);
+												deleteTicker(_id, user._id)(dispatch, userdispatch);
 												// dispatch({ type: 'REMOVE', id: _id });
 											}}
 										>

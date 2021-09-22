@@ -17,16 +17,17 @@ import Searchbar from '../components/Searchbar';
 import Login from '../components/Login';
 
 const intials = (user) => {
-	console.log('in appbar iniital, user:', user, 'usrname', user.user.username);
-	return user.user.user.username.charAt(0).toUpperCase();
+	console.log('in appbar iniitals, user:', user, 'usrname', user.username);
+	return user.user.username.charAt(0).toUpperCase();
 };
 
 export default function PrimarySearchAppBar() {
 	const classes = useStyles();
 	const user = useContext(UserContext); // get user via context
-	var username = 'Welcome'; // set default welcome
+	var username = 'Guest'; // set default welcome
 	var email = null;
 
+	console.log('in appbar, user', user, 'boolean', user.user);
 	//Test if user is logged in or not then set username and email
 	if (Boolean(user.user) === true) {
 		username = user.user.username;
@@ -76,7 +77,7 @@ export default function PrimarySearchAppBar() {
 			onClose={handleMenuClose}
 		>
 			<div className={classes.menuUserInfo}>
-				<MenuItem>{username}</MenuItem>
+				<MenuItem>{`Welcome ${username}`}</MenuItem>
 				<MenuItem>{email}</MenuItem>
 			</div>
 			<Divider />
@@ -142,7 +143,7 @@ export default function PrimarySearchAppBar() {
 							onClick={handleProfileMenuOpen}
 							color="inherit"
 						>
-							{Boolean(user.user) === true ? (
+							{Boolean(user) === true ? (
 								<div className={classes.dataInitials}>{intials({ user })}</div>
 							) : (
 								<AccountCircle />

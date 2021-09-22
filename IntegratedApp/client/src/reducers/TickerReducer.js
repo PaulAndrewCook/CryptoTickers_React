@@ -15,6 +15,8 @@ const reducer = (state, action) => {
 		case 'SET':
 			return action.payload.tickers;
 		case 'REMOVE':
+			const tickers = state.filter((ticker) => ticker._id !== newTic);
+			console.log('in tickerReducer, incoming data', newTic, 'post delete tickers', tickers, 'state', state);
 			return state.filter((ticker) => ticker._id !== newTic);
 		case 'PINTICKER':
 			return state.map((ticker) => (ticker._id === action.id ? { ...ticker, pinned: true } : ticker));

@@ -19,7 +19,7 @@ export const APIindex = async (req, res) => {
 	Promise.all([
 		updateTickers(ticker)
 	]).then(async (ticker) => {
-		res.json({ tickers: ticker.flat(1), user: null });
+		res.json({ tickers: ticker.flat(1), user: 'DefaultUser' });
 	});
 };
 
@@ -107,8 +107,9 @@ export const APIdeleteTicker = async (req, res) => {
 	const id = req.query.id;
 	const userId = req.query.userId;
 	var tickers = await Ticker.findByIdAndDelete(id);
-
+	const userBD = await User.findById(userId);
 	const user = await User.findByIdAndUpdate(userId, { $pull: { tickers: id } }, { new: true }); //pull the deleted ticker from the user's saved ticker
+	console.log('in investment controller, predelete user', userBD, 'going back to react, user', user);
 	res.json({ user });
 };
 

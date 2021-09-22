@@ -9,7 +9,8 @@ const useStyles = makeStyles((theme) => ({
 			color           : '#1967d2',
 			fontWeight      : '500',
 			letterSpacing   : '.3px',
-			textTransform   : 'uppercase'
+			textTransform   : 'uppercase',
+			disabled        : true
 		},
 		'& .TimeFrame' : {
 			transition : 'all 0.5s ease-in-out',
